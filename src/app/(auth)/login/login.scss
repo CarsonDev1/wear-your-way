@@ -1,0 +1,140 @@
+.login-form {
+	background-color: var(--primary-color);
+	.login-container {
+		display: flex;
+		height: 100vh;
+
+		.login-left {
+			flex: 1;
+			color: white;
+			display: flex;
+			flex-direction: column;
+			justify-content: center;
+			align-items: center;
+			padding: 2rem;
+
+			.logo-container {
+				margin-bottom: 2rem;
+				img {
+					display: block;
+					object-fit: cover;
+					width: 59rem;
+					height: 20rem;
+				}
+			}
+
+			.slogan {
+				text-align: center;
+				font-size: 2rem;
+				line-height: 1.5;
+				font-weight: 400;
+			}
+		}
+
+		.login-right {
+			flex: 1;
+			display: flex;
+			flex-direction: column;
+			justify-content: center;
+			align-items: center;
+			padding: 2rem;
+			width: 100%;
+
+			.login-wrap {
+				display: flex;
+				flex-direction: column;
+				background-color: #fff;
+				max-width: 48rem;
+				width: 100%;
+				padding: 3.7rem 4.4rem;
+				padding-bottom: 8rem;
+			}
+
+			h2 {
+				margin-bottom: 2rem;
+				font-size: 2.4rem;
+				font-weight: 400;
+			}
+
+			.login-form {
+				width: 100%;
+				margin-left: auto;
+				margin-right: auto;
+				background-color: #fff;
+
+				.custom-input {
+					border-radius: 8px;
+					padding: 1rem;
+					font-size: 1.4rem;
+					background-color: #f9f9f9;
+					border: 1px solid #000;
+
+					&:focus {
+						border-color: #40a9ff;
+						box-shadow: 0 0 0 2px rgba(24, 144, 255, 0.2);
+					}
+
+					.ant-input-prefix {
+						color: #888;
+					}
+
+					.ant-input-suffix {
+						color: #888;
+					}
+				}
+
+				.login-form-button {
+					width: 100%;
+					background-color: #ffd700;
+					border-color: #000;
+					color: #333;
+					font-weight: bold;
+					padding: 2rem;
+
+					&:hover,
+					&:focus {
+						background-color: #e6c200;
+						border-color: #e6c200;
+					}
+				}
+
+				.login-form-forgot {
+					float: right;
+				}
+
+				.social-login {
+					display: flex;
+					justify-content: space-between;
+					margin-bottom: 1rem;
+
+					.ant-btn {
+						width: 48%;
+						display: flex;
+						align-items: center;
+						justify-content: center;
+					}
+				}
+
+				.register-link {
+					text-align: center;
+					a {
+						color: #e6c200;
+					}
+				}
+			}
+		}
+	}
+
+	.ant-input-affix-wrapper {
+		border-radius: 4px;
+	}
+
+	.ant-form-item-explain-error {
+		font-size: 1.2rem;
+	}
+
+	.ant-divider-inner-text {
+		font-size: 1.2rem;
+		color: #888;
+	}
+}

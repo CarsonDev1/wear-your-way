@@ -3,7 +3,7 @@ import { Inter } from 'next/font/google';
 import { AntdRegistry } from '@ant-design/nextjs-registry';
 import Header from '@/app/components/header';
 import Footer from '@/app/components/footer';
-import './globals.scss';
+import '@/app/globals.scss';
 
 const inter = Inter({ subsets: ['latin'] });
 
