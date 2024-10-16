@@ -18,6 +18,10 @@ video {
 	display: block;
 	max-width: 100%;
 }
+a {
+	text-decoration: none;
+	color: #000;
+}
 input,
 select,
 textarea {
@@ -48,4 +52,22 @@ body {
 	margin: 0 auto;
 	padding: 0 1.5rem;
 	position: relative;
+}
+
+.sec-com {
+	--padding-section: 4.8rem;
+	--padding-section-tl: 2.4rem;
+	--padding-section-mobile: 1.2rem;
+
+	padding: var(--padding-section) 0;
+}
+@media screen and (min-width: 1200px) {
+	.sec-com {
+		padding: var(--padding-section-tl) 0;
+	}
+}
+@media screen and (max-width: 576px) {
+	.sec-com {
+		padding: var(--padding-section-mobile) 0;
+	}
 }

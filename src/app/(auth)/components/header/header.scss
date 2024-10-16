@@ -1,0 +1,38 @@
+.custom-header {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	background: #ffffff;
+	padding: 0 2rem;
+
+	.logo {
+		display: flex;
+		align-items: center;
+		gap: 2.4rem;
+
+		.logo-text {
+			font-size: 2rem;
+			font-weight: 500;
+			color: #000;
+		}
+	}
+
+	.menu {
+		background: transparent;
+		border-bottom: none;
+
+		.ant-menu-item-selected {
+			color: #000000;
+			border-bottom: 2px solid #000000;
+		}
+	}
+
+	.help-button {
+		display: flex;
+		align-items: center;
+
+		.anticon {
+			margin-right: 5px;
+		}
+	}
+}

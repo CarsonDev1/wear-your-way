@@ -4,7 +4,11 @@ import { Form, Input, Button, Divider } from 'antd';
 import { UserOutlined, LockOutlined, EyeInvisibleOutlined, EyeTwoTone } from '@ant-design/icons';
 import Image from 'next/image';
 import Logo from '@/app/assets/images/logo.png';
+import FacebookIcon from '@/app/assets/images/facebook-icon.png';
+import GoogleIcon from '@/app/assets/images/google-icon.png';
+
 import './login.scss';
+import Link from 'next/link';
 
 const LoginPage: React.FC = () => {
 	const onFinish = (values: unknown) => {
@@ -12,7 +16,7 @@ const LoginPage: React.FC = () => {
 	};
 
 	return (
-		<div className='login-form'>
+		<div className='login-form sec-com'>
 			<div className='container'>
 				<div className='login-container'>
 					<div className='login-left'>
@@ -44,6 +48,7 @@ const LoginPage: React.FC = () => {
 										prefix={<UserOutlined className='site-form-item-icon' />}
 										placeholder='Email/Số điện thoại/Tên đăng nhập'
 										className='custom-input'
+										autoComplete='off'
 									/>
 								</Form.Item>
 								<Form.Item
@@ -55,6 +60,7 @@ const LoginPage: React.FC = () => {
 										placeholder='Mật khẩu'
 										iconRender={(visible) => (visible ? <EyeTwoTone /> : <EyeInvisibleOutlined />)}
 										className='custom-input'
+										autoComplete='off'
 									/>
 								</Form.Item>
 
@@ -70,21 +76,21 @@ const LoginPage: React.FC = () => {
 									</a>
 								</Form.Item>
 
-								<Divider plain>Hoặc</Divider>
+								<Divider className='custom-divider' plain>
+									Hoặc
+								</Divider>
 
 								<div className='social-login'>
-									<Button
-										icon={<Image src='/facebook-icon.png' alt='Facebook' width={20} height={20} />}
-									>
+									<Button icon={<Image src={FacebookIcon} alt='Facebook' width={20} height={20} />}>
 										Facebook
 									</Button>
-									<Button icon={<Image src='/google-icon.png' alt='Google' width={20} height={20} />}>
+									<Button icon={<Image src={GoogleIcon} alt='Google' width={20} height={20} />}>
 										Google
 									</Button>
 								</div>
 
 								<div className='register-link'>
-									Bạn là người mới? <a href=''>Đăng ký ngay</a>
+									Bạn là người mới? <Link href='/register'>Đăng ký ngay</Link>
 								</div>
 							</Form>
 						</div>

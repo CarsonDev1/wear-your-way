@@ -1,7 +1,9 @@
 import type { Metadata } from 'next';
 import { Archivo } from 'next/font/google';
-import '../globals.scss';
 import { AntdRegistry } from '@ant-design/nextjs-registry';
+import CustomHeader from '@/app/(auth)/components/header';
+import '../globals.scss';
+import Footer from '@/app/(auth)/components/footer';
 
 const archivo = Archivo({ subsets: ['latin'] });
 
@@ -18,7 +20,11 @@ export default function RootLayout({
 	return (
 		<html lang='en'>
 			<body className={archivo.className}>
-				<AntdRegistry>{children}</AntdRegistry>
+				<AntdRegistry>
+					<CustomHeader />
+					{children}
+					<Footer />
+				</AntdRegistry>
 			</body>
 		</html>
 	);
