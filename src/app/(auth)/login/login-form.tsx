@@ -42,7 +42,7 @@ const LoginPage: React.FC = () => {
 								<h2>Đăng nhập</h2>
 								<Form.Item
 									name='username'
-									rules={[{ required: true, message: 'Please input your Username!' }]}
+									rules={[{ required: true, message: 'Vui lòng nhập tên đăng nhập!' }]}
 								>
 									<Input
 										prefix={<UserOutlined className='site-form-item-icon' />}
@@ -53,7 +53,7 @@ const LoginPage: React.FC = () => {
 								</Form.Item>
 								<Form.Item
 									name='password'
-									rules={[{ required: true, message: 'Please input your Password!' }]}
+									rules={[{ required: true, message: 'Vui lòng nhập mật khẩu!' }]}
 								>
 									<Input.Password
 										prefix={<LockOutlined className='site-form-item-icon' />}
