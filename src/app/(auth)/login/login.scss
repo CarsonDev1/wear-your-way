@@ -129,13 +129,14 @@
 	}
 
 	.ant-divider-inner-text {
-		font-size: 1.2rem;
+		font-size: 1.4rem;
 		color: #000;
 	}
 
 	.custom-divider {
 		color: #333;
 		border-block-start: #000 !important;
+		opacity: 0.5;
 	}
 
 	@media (max-width: 768px) {
