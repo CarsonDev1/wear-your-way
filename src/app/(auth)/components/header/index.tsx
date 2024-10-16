@@ -3,7 +3,6 @@ import React from 'react';
 import { Button } from 'antd';
 import { QuestionCircleOutlined } from '@ant-design/icons';
 import Image from 'next/image';
-import Link from 'next/link';
 import Logo from '@/app/assets/images/logo-auth.png';
 
 import './header.scss';

@@ -1,7 +1,6 @@
 import Image from 'next/image';
 import React from 'react';
 import Logo from '@/app/assets/images/logo-footer.png';
-import FooterIcon from '@/app/assets/images/footer-icon.png';
 import FooterFB from '@/app/assets/images/fb-icon-auth.png';
 import FooterIG from '@/app/assets/images/ig-icon-auth.png';
 import FooterX from '@/app/assets/images/tw-icon-auth.png';
