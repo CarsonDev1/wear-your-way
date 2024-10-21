@@ -1,13 +1,20 @@
 .header {
 	background-color: #333;
 	padding: 15px 30px;
-	position: fixed; /* Make the header fixed */
+	position: relative;
 	top: 0;
 	left: 0;
 	width: 100%;
 	z-index: 1000;
-	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Add shadow for depth */
-	transition: background-color 0.3s ease; /* Smooth background transition on scroll */
+	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+	transition: background-color 0.4s ease-in-out, padding 0.4s ease-in-out, box-shadow 0.4s ease-in-out;
+
+	&.scrolled {
+		background-color: #333;
+		position: fixed;
+		padding: 10px 30px;
+		box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+	}
 
 	@media screen and (max-width: 992px) {
 		padding: 8px;
@@ -41,17 +48,25 @@
 				align-items: center;
 				gap: 1rem;
 				text-transform: uppercase;
-				padding: 10px 0; /* Add padding for better click area */
-				transition: color 0.3s ease; /* Smooth hover transition */
+				padding: 10px 0;
+				transition: color 0.3s ease-in-out; /* Smooth hover transition */
 			}
 
 			li a:hover {
 				color: #ffcc00;
 			}
+
+			li.active a {
+				color: #ffcc00;
+				font-weight: bold;
+				border-bottom: 2px solid #ffcc00;
+				transition: border-bottom 0.4s ease-out;
+			}
 		}
 
 		&.open {
 			transform: translateX(0);
+			transition: transform 0.4s ease-out; /* Smoother menu opening */
 		}
 	}
 
@@ -62,10 +77,11 @@
 		.icon {
 			color: white;
 			font-size: 2.5rem;
-			transition: color 0.3s ease;
+			transition: color 0.3s ease-in-out;
 
 			&:hover {
 				color: #ffcc00;
+				transition: color 0.4s ease-out; /* Make hover transitions smoother */
 			}
 		}
 	}
@@ -83,7 +99,7 @@
 	}
 
 	.sub-menu {
-		display: flex;
+		display: none; /* Ẩn sub-menu ban đầu */
 		flex-direction: column;
 		background-color: #444;
 		padding: 1.5rem;
@@ -92,10 +108,9 @@
 		border-radius: 0.5rem;
 		position: absolute;
 		box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-
-		@media screen and (max-width: 992px) {
-			position: relative;
-		}
+		opacity: 0;
+		transform: translateY(-10px);
+		transition: opacity 0.4s ease, transform 0.4s ease; /* Smooth submenu appearance */
 
 		li {
 			margin-bottom: 5px;
@@ -111,11 +126,18 @@
 				color: #ffcc00;
 			}
 		}
+
+		&.open {
+			display: flex; /* Hiển thị sub-menu khi có class open */
+			opacity: 1; /* Thay đổi opacity khi mở */
+			transform: translateY(0); /* Thay đổi transform khi mở */
+		}
 	}
 
+	/* Rotate icon with smoother transition */
 	.rotate {
 		transform: rotate(180deg);
-		transition: transform 0.3s ease;
+		transition: transform 0.4s ease-out;
 	}
 }
 
@@ -129,7 +151,7 @@
 		background-color: #333;
 		padding: 3rem;
 		transform: translateX(-100%);
-		transition: transform 0.3s ease-in-out;
+		transition: transform 0.4s ease-in-out; /* Smoother transition for mobile menu */
 		z-index: 20;
 
 		ul {
@@ -146,5 +168,6 @@
 		height: 100%;
 		background-color: rgba(0, 0, 0, 0.5);
 		z-index: 10;
+		transition: background-color 0.3s ease-in-out; /* Smooth overlay transition */
 	}
 }

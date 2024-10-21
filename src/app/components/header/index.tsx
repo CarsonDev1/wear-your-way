@@ -1,16 +1,21 @@
 'use client';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Image from 'next/image';
 import Logo from '@/app/assets/images/logo.png';
 import { MdOutlineAddShoppingCart } from 'react-icons/md';
 import { FaRegCircleUser } from 'react-icons/fa6';
 import { IoIosArrowDown, IoMdMenu } from 'react-icons/io';
 import { IoMdClose } from 'react-icons/io';
+import { usePathname } from 'next/navigation';
+import Link from 'next/link';
 import './header.scss';
 
 const Header = () => {
 	const [isSubMenuOpen, setIsSubMenuOpen] = useState(false);
 	const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+	const [isScrolled, setIsScrolled] = useState(false); // New state for scroll
+
+	const pathname = usePathname();
 
 	const toggleSubMenu = () => {
 		setIsSubMenuOpen(!isSubMenuOpen);
@@ -20,8 +25,25 @@ const Header = () => {
 		setIsMobileMenuOpen(!isMobileMenuOpen);
 	};
 
+	// Effect for scroll event
+	useEffect(() => {
+		const handleScroll = () => {
+			if (window.scrollY > 100) {
+				setIsScrolled(true);
+			} else {
+				setIsScrolled(false);
+			}
+		};
+
+		window.addEventListener('scroll', handleScroll);
+
+		return () => {
+			window.removeEventListener('scroll', handleScroll);
+		};
+	}, []);
+
 	return (
-		<header className='header'>
+		<header className={`header ${isScrolled ? 'scrolled' : ''}`}>
 			<div className='container'>
 				<div className='header-wrap'>
 					<div className='logo'>
@@ -41,9 +63,9 @@ const Header = () => {
 									thông tin <IoIosArrowDown className={isSubMenuOpen ? 'rotate' : ''} />
 								</a>
 								{isSubMenuOpen && (
-									<ul className='sub-menu'>
-										<li>
-											<a href='#'>Sub Item 1</a>
+									<ul className={`sub-menu ${isSubMenuOpen ? 'open' : ''}`}>
+										<li className={pathname === '/table-price' ? 'active' : ''}>
+											<Link href='/table-price'>Bảng Giá</Link>
 										</li>
 										<li>
 											<a href='#'>Sub Item 2</a>
@@ -54,8 +76,8 @@ const Header = () => {
 							<li>
 								<a href='#'>tin tức</a>
 							</li>
-							<li>
-								<a href='#'>about us</a>
+							<li className={pathname === '/about' ? 'active' : ''}>
+								<Link href='/about'>about us</Link>
 							</li>
 						</ul>
 					</nav>
