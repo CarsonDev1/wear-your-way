@@ -1,7 +1,7 @@
+/* eslint-disable react/no-unescaped-entities */
 'use client';
 import React from 'react';
-import { Typography, Button } from 'antd';
-import { ArrowRightOutlined } from '@ant-design/icons';
+import { Typography } from 'antd';
 import Post01 from '@/app/assets/images/posts/post-01.png';
 import Post02 from '@/app/assets/images/posts/post-02.png';
 import Post03 from '@/app/assets/images/posts/post-03.png';

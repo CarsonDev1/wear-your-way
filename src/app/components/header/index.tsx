@@ -82,13 +82,13 @@ const Header = () => {
 											<Link href='/table-price'>Bảng Giá</Link>
 										</li>
 										<li>
-											<Link href='/posts'>Bài Viết</Link>
+											<Link href='#'>Bài Viết</Link>
 										</li>
 									</ul>
 								)}
 							</li>
-							<li>
-								<a href='#'>tin tức</a>
+							<li className={pathname === '/posts' ? 'active' : ''}>
+								<Link href='/posts'>Tin Tức</Link>
 							</li>
 							<li className={pathname === '/about' ? 'active' : ''}>
 								<Link href='/about'>about us</Link>
