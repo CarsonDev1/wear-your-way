@@ -6,6 +6,9 @@ import TablePrice03 from '@/app/assets/images/table-price/table-pirce-03.png';
 import TablePrice04 from '@/app/assets/images/table-price/table-pirce-04.png';
 import TablePrice05 from '@/app/assets/images/table-price/table-pirce-05.png';
 import TablePrice06 from '@/app/assets/images/table-price/table-pirce-06.png';
+import Content01 from '@/app/assets/images/table-price/content-01.png';
+import Content02 from '@/app/assets/images/table-price/content-02.png';
+import Content03 from '@/app/assets/images/table-price/content-03.png';
 import './table-price.scss';
 
 const TablePrice = () => {
@@ -30,6 +33,16 @@ const TablePrice = () => {
 						</div>
 						<div className='table-price-wrap-list-item'>
 							<Image src={TablePrice06} alt='table-price-06' />
+						</div>
+						<h3 className='sec-com-tt'>Mực in</h3>
+						<div className='table-price-wrap-list-item'>
+							<Image src={Content01} alt='content-01' />
+						</div>
+						<div className='table-price-wrap-list-item'>
+							<Image src={Content02} alt='content-02' />
+						</div>
+						<div className='table-price-wrap-list-item'>
+							<Image src={Content03} alt='content-03' />
 						</div>
 					</div>
 				</div>

@@ -1,5 +1,5 @@
 'use client';
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import Image from 'next/image';
 import Logo from '@/app/assets/images/logo.png';
 import { MdOutlineAddShoppingCart } from 'react-icons/md';
@@ -13,7 +13,8 @@ import './header.scss';
 const Header = () => {
 	const [isSubMenuOpen, setIsSubMenuOpen] = useState(false);
 	const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-	const [isScrolled, setIsScrolled] = useState(false); // New state for scroll
+	const [isScrolled, setIsScrolled] = useState(false);
+	const subMenuRef = useRef<HTMLUListElement | null>(null);
 
 	const pathname = usePathname();
 
@@ -25,7 +26,6 @@ const Header = () => {
 		setIsMobileMenuOpen(!isMobileMenuOpen);
 	};
 
-	// Effect for scroll event
 	useEffect(() => {
 		const handleScroll = () => {
 			if (window.scrollY > 100) {
@@ -39,6 +39,20 @@ const Header = () => {
 
 		return () => {
 			window.removeEventListener('scroll', handleScroll);
+		};
+	}, []);
+
+	useEffect(() => {
+		const handleClickOutside = (event: MouseEvent) => {
+			if (subMenuRef.current && !subMenuRef.current.contains(event.target as Node)) {
+				setIsSubMenuOpen(false);
+			}
+		};
+
+		document.addEventListener('mousedown', handleClickOutside);
+
+		return () => {
+			document.removeEventListener('mousedown', handleClickOutside);
 		};
 	}, []);
 
@@ -63,12 +77,12 @@ const Header = () => {
 									thông tin <IoIosArrowDown className={isSubMenuOpen ? 'rotate' : ''} />
 								</a>
 								{isSubMenuOpen && (
-									<ul className={`sub-menu ${isSubMenuOpen ? 'open' : ''}`}>
+									<ul ref={subMenuRef} className={`sub-menu ${isSubMenuOpen ? 'open' : ''}`}>
 										<li className={pathname === '/table-price' ? 'active' : ''}>
 											<Link href='/table-price'>Bảng Giá</Link>
 										</li>
 										<li>
-											<a href='#'>Sub Item 2</a>
+											<Link href='/posts'>Bài Viết</Link>
 										</li>
 									</ul>
 								)}

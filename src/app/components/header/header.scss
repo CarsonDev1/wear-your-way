@@ -1,20 +1,13 @@
 .header {
 	background-color: #333;
 	padding: 15px 30px;
-	position: relative;
+	position: sticky;
 	top: 0;
 	left: 0;
 	width: 100%;
 	z-index: 1000;
 	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 	transition: background-color 0.4s ease-in-out, padding 0.4s ease-in-out, box-shadow 0.4s ease-in-out;
-
-	&.scrolled {
-		background-color: #333;
-		position: fixed;
-		padding: 10px 30px;
-		box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
-	}
 
 	@media screen and (max-width: 992px) {
 		padding: 8px;
