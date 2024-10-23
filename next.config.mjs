@@ -1,7 +1,14 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-	sassOptions: {
-		// You can add Sass-specific options here if needed
+	images: {
+		remotePatterns: [
+			{
+				protocol: 'https',
+				hostname: 'storage.googleapis.com',
+				port: '',
+				pathname: '/thaco-3149c.appspot.com/**',
+			},
+		],
 	},
 };
 

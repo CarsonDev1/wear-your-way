@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { Account } from '@/app/types/Account.type';
 import api from '@/app/utils/api';
 

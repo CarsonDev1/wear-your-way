@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { Product } from '@/app/types/Product.type';
 import api from '@/app/utils/api';
 
