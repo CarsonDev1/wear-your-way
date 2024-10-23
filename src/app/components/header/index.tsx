@@ -9,12 +9,14 @@ import { IoMdClose } from 'react-icons/io';
 import { usePathname } from 'next/navigation';
 import Link from 'next/link';
 import './header.scss';
+import { useAuth } from '@/app/contexts/AuthProvider';
 
 const Header = () => {
 	const [isSubMenuOpen, setIsSubMenuOpen] = useState(false);
 	const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 	const [isScrolled, setIsScrolled] = useState(false);
 	const subMenuRef = useRef<HTMLUListElement | null>(null);
+	const { cartCount } = useAuth();
 
 	const pathname = usePathname();
 
@@ -60,9 +62,11 @@ const Header = () => {
 		<header className={`header ${isScrolled ? 'scrolled' : ''}`}>
 			<div className='container'>
 				<div className='header-wrap'>
-					<div className='logo'>
-						<Image src={Logo} alt='Wear Your Way' width={210} height={89} />
-					</div>
+					<Link href='/'>
+						<div className='logo'>
+							<Image src={Logo} alt='Wear Your Way' width={210} height={89} />
+						</div>
+					</Link>
 
 					<nav className={`navigation ${isMobileMenuOpen ? 'open' : ''}`}>
 						<ul>
@@ -70,7 +74,7 @@ const Header = () => {
 								<a href='#'>thiết kế</a>
 							</li>
 							<li>
-								<a href='#'>sản phẩm mẫu</a>
+								<Link href='/product-list'>sản phẩm mẫu</Link>
 							</li>
 							<li>
 								<a href='#' onClick={toggleSubMenu}>
@@ -97,9 +101,12 @@ const Header = () => {
 					</nav>
 
 					<div className='header-icons'>
-						<div className='icon'>
-							<MdOutlineAddShoppingCart />
-						</div>
+						<Link href='/cart'>
+							<div className='icon cart-icon'>
+								<MdOutlineAddShoppingCart />
+								{cartCount > 0 && <span className='cart-count'>{cartCount}</span>}
+							</div>
+						</Link>
 						<div className='icon'>
 							<FaRegCircleUser />
 						</div>

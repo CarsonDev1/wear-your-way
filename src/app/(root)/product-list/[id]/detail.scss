@@ -1,0 +1,150 @@
+.exact-product-detail {
+	overflow: hidden;
+	.product-image {
+		background-color: #e6f7ff;
+		border-radius: 8px;
+		overflow: hidden;
+		padding: 0 !important;
+	}
+
+	.product-title {
+		font-size: 24px;
+		font-weight: bold;
+		margin-bottom: 16px;
+	}
+
+	.product-meta {
+		display: flex;
+		align-items: center;
+		margin-bottom: 16px;
+
+		.ant-rate {
+			font-size: 16px;
+			margin-right: 8px;
+		}
+
+		.review-count,
+		.sales-count {
+			color: #888;
+			font-size: 14px;
+			margin-right: 16px;
+		}
+	}
+
+	.product-price {
+		font-size: 32px;
+		font-weight: bold;
+		color: #ff4d4f;
+		margin-bottom: 24px;
+	}
+
+	.size-selection {
+		margin-bottom: 24px;
+
+		.size-label {
+			display: block;
+			margin-bottom: 12px;
+			font-weight: bold;
+			font-size: 18px;
+		}
+
+		.size-options {
+			display: flex;
+			gap: 16px;
+		}
+
+		.size-button {
+			width: 48px;
+			height: 48px;
+			border: 2px solid #000;
+			background-color: #fff;
+			font-size: 18px;
+			font-weight: bold;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			cursor: pointer;
+			border-radius: 8px;
+
+			&.selected {
+				background-color: #000;
+				color: #fff;
+			}
+
+			&:hover {
+				border-color: #000;
+			}
+		}
+	}
+
+	.add-to-cart-btn {
+		width: max-content;
+		height: 48px;
+		font-size: 16px;
+		font-weight: bold;
+		margin-bottom: 24px;
+		background-color: #ffc107;
+		border-color: #ffc107;
+
+		&:hover,
+		&:focus {
+			background-color: #ffca2c !important;
+			border-color: #ffca2c !important;
+		}
+	}
+	.size-chart-wrap {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+	}
+	.size-chart {
+		width: 100%;
+	}
+}
+
+// Responsive adjustments
+@media (max-width: 767px) {
+	.exact-product-detail {
+		padding: 16px;
+
+		.product-title {
+			font-size: 20px;
+		}
+
+		.product-meta {
+			flex-wrap: wrap;
+
+			.ant-rate {
+				font-size: 14px;
+			}
+
+			.review-count,
+			.sales-count {
+				font-size: 12px;
+			}
+		}
+
+		.product-price {
+			font-size: 28px;
+		}
+
+		.size-selection {
+			.size-button {
+				width: 36px;
+				height: 36px;
+				font-size: 14px;
+			}
+		}
+
+		.add-to-cart-btn {
+			height: 44px;
+			font-size: 16px;
+		}
+
+		.size-chart {
+			h3 {
+				font-size: 16px;
+			}
+		}
+	}
+}

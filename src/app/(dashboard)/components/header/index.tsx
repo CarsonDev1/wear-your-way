@@ -8,11 +8,7 @@ import { useAuth } from '@/app/contexts/AuthProvider';
 import './header.scss';
 
 const Header: React.FC = () => {
-	const {
-		data: user,
-		isLoading,
-		error,
-	} = useQuery({
+	const { isLoading, error } = useQuery({
 		queryKey: ['userData'],
 		queryFn: () => getAccount(),
 	});
@@ -22,7 +18,7 @@ const Header: React.FC = () => {
 	const menu = (
 		<Menu>
 			<Menu.Item key='1'>
-				<span onClick={() => logout}>Log Out</span>
+				<span onClick={logout}>Log Out</span>
 			</Menu.Item>
 		</Menu>
 	);

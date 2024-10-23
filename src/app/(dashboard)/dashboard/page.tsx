@@ -104,17 +104,17 @@ const Dashboard: React.FC = () => {
 	return (
 		<div className='dashboard'>
 			<Row gutter={[16, 16]}>
-				<Col span={14}>
+				<Col xs={24} md={14}>
 					<Card title='Weekly Activity' className='chart-card'>
 						<Bar data={weeklyActivityData} options={weeklyActivityOptions} />
 					</Card>
 				</Col>
-				<Col span={10}>
+				<Col xs={24} md={10}>
 					<Card title='Expense Statistics' className='chart-card'>
 						<Pie data={expenseData} options={expenseOptions} />
 					</Card>
 				</Col>
-				<Col span={14}>
+				<Col xs={24} md={14}>
 					<Card title='Top Transaction' className='chart-card'>
 						<div className='top-transaction'>
 							<div className='user-list'>
@@ -144,7 +144,7 @@ const Dashboard: React.FC = () => {
 						</div>
 					</Card>
 				</Col>
-				<Col span={10}>
+				<Col xs={24} md={10}>
 					<Card title='Transaction History' className='chart-card'>
 						<Line data={transactionHistoryData} options={transactionHistoryOptions} />
 					</Card>

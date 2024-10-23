@@ -1,7 +1,7 @@
 .customer-page {
 	padding: 24px;
 	background-color: #f0f2f5;
-	height: 100dvh;
+	min-height: 100vh;
 
 	.customer-card {
 		box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
@@ -15,6 +15,7 @@
 
 		.ant-card-body {
 			padding: 0;
+			overflow-x: auto; // Đảm bảo phần thân thẻ có thể cuộn ngang
 		}
 
 		.ant-table-wrapper {
@@ -30,6 +31,25 @@
 
 			.ant-table-tbody > tr:last-child > td {
 				border-bottom: none;
+			}
+		}
+	}
+
+	// Responsive layout cho màn hình nhỏ hơn
+	@media (max-width: 768px) {
+		.customer-card {
+			.ant-card-head-title {
+				font-size: 16px;
+			}
+		}
+	}
+
+	@media (max-width: 576px) {
+		padding: 16px;
+
+		.customer-card {
+			.ant-card-head-title {
+				font-size: 14px;
 			}
 		}
 	}
@@ -72,5 +92,23 @@
 
 	.ant-form-item-label > label {
 		font-weight: 500;
+	}
+
+	// Responsive Modal
+	@media (max-width: 768px) {
+		.ant-modal {
+			width: 90% !important;
+		}
+	}
+
+	@media (max-width: 576px) {
+		.ant-modal {
+			width: 100% !important;
+			margin: 0 8px;
+		}
+
+		.ant-modal-body {
+			padding: 16px !important;
+		}
 	}
 }

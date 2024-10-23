@@ -16,6 +16,7 @@
 	.top-transaction {
 		.user-list {
 			display: flex;
+			flex-wrap: wrap;
 			gap: 16px;
 			margin-bottom: 16px;
 
@@ -68,5 +69,29 @@
 
 	.ant-card-head {
 		border-bottom: none;
+	}
+}
+
+// Responsive styles
+@media (max-width: 768px) {
+	.dashboard {
+		padding: 16px;
+	}
+
+	.chart-card {
+		.ant-card-head-title {
+			font-size: 16px;
+		}
+	}
+
+	.top-transaction {
+		.user-list {
+			gap: 8px;
+		}
+
+		.amount strong {
+			font-size: 16px;
+			padding: 6px 12px;
+		}
 	}
 }

@@ -234,7 +234,12 @@ const ProductPage: React.FC = () => {
 		form.resetFields();
 	};
 
-	if (isLoading) return <Spin size='large' />;
+	if (isLoading)
+		return (
+			<div className='loading-spinner'>
+				<Spin size='large' />
+			</div>
+		);
 	if (error) return <div>Error fetching products...</div>;
 
 	return (
@@ -252,7 +257,7 @@ const ProductPage: React.FC = () => {
 				}
 				className='Product-card'
 			>
-				<Table columns={columns} dataSource={productList} rowKey='id' />
+				<Table columns={columns} dataSource={productList} rowKey='id' scroll={{ x: 1000 }} />
 			</Card>
 
 			<Modal

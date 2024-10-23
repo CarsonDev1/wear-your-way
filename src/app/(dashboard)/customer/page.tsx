@@ -10,7 +10,7 @@ import Image from 'next/image';
 import './customer.scss';
 import { getAccounts } from '@/app/apis/user/getAccounts';
 import { deleteAccount } from '@/app/apis/user/deleteAccount';
-import { updateAccount } from '@/app/apis/user/updateUser';
+import { updateAccount } from '@/app/apis/user/updateAcount';
 
 const Customer: React.FC = () => {
 	const queryClient = useQueryClient();
@@ -119,7 +119,7 @@ const Customer: React.FC = () => {
 		},
 		onSuccess: () => {
 			queryClient.invalidateQueries({ queryKey: ['accountList'] });
-			queryClient.refetchQueries({ queryKey: ['accountList'] });
+
 			Swal.fire({
 				title: 'Success!',
 				text: 'Account updated successfully.',
@@ -196,13 +196,23 @@ const Customer: React.FC = () => {
 		form.resetFields();
 	};
 
-	if (isLoading) return <Spin size='large' />;
+	if (isLoading)
+		return (
+			<div className='loading-spinner'>
+				<Spin size='large' />
+			</div>
+		);
 	if (error) return <div>Error fetching accounts...</div>;
 
 	return (
 		<div className='account-page'>
 			<Card title='Account Management' className='Account-card'>
-				<Table columns={columns} dataSource={Array.isArray(accountList) ? accountList : []} rowKey='_id' />
+				<Table
+					columns={columns}
+					dataSource={Array.isArray(accountList) ? accountList : []}
+					rowKey='_id'
+					scroll={{ x: 800 }}
+				/>
 			</Card>
 
 			<Modal

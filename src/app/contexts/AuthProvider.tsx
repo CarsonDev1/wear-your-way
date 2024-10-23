@@ -1,10 +1,15 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 'use client';
-import React, { createContext, useContext, useState, ReactNode } from 'react';
+import React, { createContext, useContext, useState, ReactNode, useEffect } from 'react';
+import { toast } from 'react-toastify';
 
 interface AuthContextType {
 	isAuthenticated: boolean;
 	login: (tokens: { accessToken: string; refreshToken: string }) => void;
 	logout: () => void;
+	cartCount: number;
+	addToCart: (product: any) => void;
+	clearCart: () => void;
 }
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
@@ -18,6 +23,30 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
 		typeof window !== 'undefined' && !!localStorage.getItem('accessToken')
 	);
 
+	// Cart state and functions
+	const [cartCount, setCartCount] = useState<number>(0);
+
+	useEffect(() => {
+		// Load initial cart count from localStorage
+		const storedCart = JSON.parse(localStorage.getItem('cart') || '[]');
+		setCartCount(storedCart.length);
+	}, []);
+
+	const addToCart = (product: any) => {
+		const existingCart = JSON.parse(localStorage.getItem('cart') || '[]');
+		const updatedCart = [...existingCart, product];
+		localStorage.setItem('cart', JSON.stringify(updatedCart));
+		setCartCount(updatedCart.length);
+
+		toast.success('Thêm vào giỏ hàng thành công!');
+	};
+
+	const clearCart = () => {
+		localStorage.removeItem('cart');
+		setCartCount(0);
+	};
+
+	// Auth functions
 	const login = ({ accessToken, refreshToken }: { accessToken: string; refreshToken: string }) => {
 		if (typeof window !== 'undefined') {
 			localStorage.setItem('accessToken', accessToken);
@@ -30,11 +59,17 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
 		if (typeof window !== 'undefined') {
 			localStorage.removeItem('accessToken');
 			localStorage.removeItem('refreshToken');
+			localStorage.removeItem('cart'); // Clear cart when logging out
 			setIsAuthenticated(false);
+			setCartCount(0); // Reset cart count
 		}
 	};
 
-	return <AuthContext.Provider value={{ isAuthenticated, login, logout }}>{children}</AuthContext.Provider>;
+	return (
+		<AuthContext.Provider value={{ isAuthenticated, login, logout, cartCount, addToCart, clearCart }}>
+			{children}
+		</AuthContext.Provider>
+	);
 };
 
 export const useAuth = () => {
