@@ -9,7 +9,10 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@ant-design/charts": "^2.2.1",
     "@ant-design/nextjs-registry": "^1.0.1",
+    "@tanstack/react-query": "^5.59.15",
+    "@tanstack/react-query-devtools": "^5.59.15",
     "antd": "^5.21.2",
     "axios": "^1.7.7",
     "css-loader": "^7.1.2",
@@ -18,8 +21,10 @@
     "next": "14.2.14",
     "next-plugin-antd-less": "^1.8.0",
     "react": "^18",
+    "react-chartjs-2": "^5.2.0",
     "react-dom": "^18",
     "react-icons": "^5.3.0",
+    "react-toastify": "^10.0.6",
     "sass": "^1.79.5",
     "sharp": "^0.33.5",
     "style-loader": "^4.0.0",

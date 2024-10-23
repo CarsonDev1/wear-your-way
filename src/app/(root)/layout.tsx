@@ -5,6 +5,7 @@ import Header from '@/app/components/header';
 import Footer from '@/app/components/footer';
 import { AuthProvider } from '@/app/contexts/AuthProvider';
 import '@/app/globals.scss';
+import Provider from '@/app/utils/Provider';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -21,13 +22,15 @@ export default function RootLayout({
 	return (
 		<html lang='en'>
 			<body className={inter.className}>
-				<AuthProvider>
-					<AntdRegistry>
-						<Header />
-						{children}
-						<Footer />
-					</AntdRegistry>
-				</AuthProvider>
+				<Provider>
+					<AuthProvider>
+						<AntdRegistry>
+							<Header />
+							{children}
+							<Footer />
+						</AntdRegistry>
+					</AuthProvider>
+				</Provider>
 			</body>
 		</html>
 	);

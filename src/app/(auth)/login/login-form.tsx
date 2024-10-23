@@ -1,18 +1,51 @@
 'use client';
-import React from 'react';
-import { Form, Input, Button, Divider } from 'antd';
+import React, { useState } from 'react';
+import { Form, Input, Button, Divider, Spin } from 'antd';
 import { UserOutlined, LockOutlined, EyeInvisibleOutlined, EyeTwoTone } from '@ant-design/icons';
 import Image from 'next/image';
+import { useRouter } from 'next/navigation';
+import { toast } from 'react-toastify';
 import Logo from '@/app/assets/images/logo.png';
 import FacebookIcon from '@/app/assets/images/facebook-icon.png';
 import GoogleIcon from '@/app/assets/images/google-icon.png';
-
-import './login.scss';
 import Link from 'next/link';
+import './login.scss';
+import api from '@/app/utils/api';
 
 const LoginPage: React.FC = () => {
-	const onFinish = (values: unknown) => {
-		console.log('Success:', values);
+	const [loading, setLoading] = useState(false);
+	const router = useRouter();
+
+	const onFinish = async (values: { username: string; password: string }) => {
+		setLoading(true);
+
+		try {
+			const response = await api.post('/auth/login', values);
+
+			if (response.status === 200) {
+				const { accessToken, role } = response.data;
+
+				localStorage.setItem('accessToken', accessToken);
+
+				if (role === 'admin') {
+					router.push('/dashboard');
+				} else {
+					router.push('/');
+				}
+
+				toast.success('Đăng nhập thành công!', {
+					position: 'top-right',
+					autoClose: 3000,
+				});
+			}
+		} catch (error: any) {
+			toast.error(error.response?.data?.error || 'Đăng nhập thất bại. Vui lòng thử lại.', {
+				position: 'top-right',
+				autoClose: 3000,
+			});
+		} finally {
+			setLoading(false);
+		}
 	};
 
 	return (
@@ -41,7 +74,7 @@ const LoginPage: React.FC = () => {
 							>
 								<h2>Đăng nhập</h2>
 								<Form.Item
-									name='username'
+									name='identifier'
 									rules={[{ required: true, message: 'Vui lòng nhập tên đăng nhập!' }]}
 								>
 									<Input
@@ -65,8 +98,13 @@ const LoginPage: React.FC = () => {
 								</Form.Item>
 
 								<Form.Item>
-									<Button type='primary' htmlType='submit' className='login-form-button'>
-										Đăng nhập
+									<Button
+										type='primary'
+										htmlType='submit'
+										className='login-form-button'
+										disabled={loading}
+									>
+										{loading ? <Spin /> : 'Đăng nhập'}
 									</Button>
 								</Form.Item>
 

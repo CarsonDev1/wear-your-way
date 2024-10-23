@@ -1,7 +1,7 @@
 'use client';
 
-import React from 'react';
-import { Form, Input, Button, Divider } from 'antd';
+import React, { useState } from 'react';
+import { Form, Input, Button, Divider, Spin } from 'antd';
 import {
 	UserOutlined,
 	LockOutlined,
@@ -11,16 +11,52 @@ import {
 	PhoneOutlined,
 } from '@ant-design/icons';
 import Image from 'next/image';
+import { useRouter } from 'next/navigation';
+import { toast } from 'react-toastify';
 import Logo from '@/app/assets/images/logo.png';
 import FacebookIcon from '@/app/assets/images/facebook-icon.png';
 import GoogleIcon from '@/app/assets/images/google-icon.png';
 
 import './register.scss';
 import Link from 'next/link';
+import api from '@/app/utils/api';
 
 const RegisterPage: React.FC = () => {
-	const onFinish = (values: unknown) => {
-		console.log('Success:', values);
+	const [loading, setLoading] = useState(false);
+	const router = useRouter();
+
+	const onFinish = async (values: any) => {
+		const { username, email, phone, password } = values;
+		const formData = new FormData();
+
+		formData.append('username', username);
+		formData.append('email', email);
+		formData.append('phone_number', phone);
+		formData.append('password', password);
+
+		setLoading(true);
+
+		try {
+			const response = await api.post('/auth/register', formData);
+
+			if (response.status === 201) {
+				toast.success('Đăng ký thành công! Chuyển hướng tới trang đăng nhập...', {
+					position: 'top-right',
+					autoClose: 3000,
+				});
+
+				setTimeout(() => {
+					router.push('/login');
+				}, 3000);
+			}
+		} catch (error: any) {
+			toast.error(error.response?.data?.error || 'Đăng ký thất bại. Vui lòng thử lại sau.', {
+				position: 'top-right',
+				autoClose: 3000,
+			});
+		} finally {
+			setLoading(false);
+		}
 	};
 
 	return (
@@ -124,8 +160,13 @@ const RegisterPage: React.FC = () => {
 								</Form.Item>
 
 								<Form.Item>
-									<Button type='primary' htmlType='submit' className='register-form-button'>
-										Đăng ký
+									<Button
+										type='primary'
+										htmlType='submit'
+										className='register-form-button'
+										disabled={loading}
+									>
+										{loading ? <Spin /> : 'Đăng ký'}
 									</Button>
 								</Form.Item>
 

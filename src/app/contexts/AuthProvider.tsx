@@ -14,7 +14,6 @@ interface AuthProviderProps {
 }
 
 export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
-	// Kiểm tra nếu đang chạy trên client mới dùng localStorage
 	const [isAuthenticated, setIsAuthenticated] = useState(
 		typeof window !== 'undefined' && !!localStorage.getItem('accessToken')
 	);
