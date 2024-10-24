@@ -3,7 +3,7 @@ import { useParams } from 'next/navigation';
 import { useQuery } from '@tanstack/react-query';
 import { getProductById } from '@/app/apis/product/getProductById';
 import { useState } from 'react';
-import { Row, Col, Rate, Button } from 'antd';
+import { Row, Col, Rate, Button, Spin } from 'antd';
 import Image from 'next/image';
 import ChartSize from '@/app/assets/images/table-price/table-pirce-05.png';
 import { useAuth } from '@/app/contexts/AuthProvider';
@@ -65,7 +65,11 @@ const ProductDetail: React.FC = () => {
 	});
 
 	if (isLoading) {
-		return <div>Loading...</div>;
+		return (
+			<div className='loading-spinner'>
+				<Spin />
+			</div>
+		);
 	}
 
 	if (error) {

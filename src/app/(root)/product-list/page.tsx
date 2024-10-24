@@ -19,7 +19,6 @@ const ProductList: React.FC = () => {
 		queryFn: () => getProducts(),
 	});
 
-	// Handle loading state
 	if (isLoading) {
 		return (
 			<div className='loading-spinner'>
@@ -28,7 +27,6 @@ const ProductList: React.FC = () => {
 		);
 	}
 
-	// Handle error state
 	if (error) {
 		return <div>Error loading products: {(error as Error).message}</div>;
 	}

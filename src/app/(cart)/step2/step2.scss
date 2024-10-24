@@ -1,0 +1,117 @@
+.exact-payment-confirmation {
+	margin: 0 auto;
+
+	.section-title {
+		font-size: 18px;
+		font-weight: bold;
+		margin-bottom: 16px;
+		padding-bottom: 8px;
+		border-bottom: 2px solid #ffd700;
+	}
+
+	.payment-options {
+		margin-bottom: 24px;
+
+		.ant-radio-wrapper {
+			display: flex;
+			align-items: center;
+			margin-bottom: 16px;
+			width: 100%;
+
+			span:last-child {
+				display: flex;
+				align-items: center;
+				justify-content: space-between;
+			}
+		}
+
+		.ant-radio {
+			margin-right: 8px;
+		}
+
+		.ant-radio-inner {
+			width: 18px;
+			height: 18px;
+		}
+
+		.ant-radio-input:focus + .ant-radio-inner {
+			box-shadow: 0 0 0 2px rgba(24, 144, 255, 0.2);
+		}
+	}
+
+	.qr-section {
+		border: 1px solid #d9d9d9;
+		padding: 16px;
+		border-radius: 4px;
+
+		h5 {
+			margin-bottom: 16px;
+		}
+
+		ul {
+			list-style-type: none;
+			padding: 0;
+			margin: 16px 0;
+		}
+
+		.ant-typography-secondary {
+			font-size: 12px;
+		}
+	}
+
+	.customer-info {
+		list-style-type: none;
+		padding: 0;
+		margin-bottom: 24px;
+
+		li {
+			margin-bottom: 8px;
+		}
+	}
+
+	.order-summary {
+		display: flex;
+		margin-bottom: 24px;
+		border-bottom: 1px solid #d9d9d9;
+		padding-bottom: 16px;
+
+		.order-details {
+			margin-left: 16px;
+			display: flex;
+			flex-direction: column;
+
+			.price {
+				margin-top: 8px;
+			}
+		}
+	}
+
+	.total-amount {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+
+		h4 {
+			margin-bottom: 0;
+		}
+	}
+}
+
+// Override Ant Design styles
+:global {
+	.ant-radio-inner {
+		border-color: #d9d9d9;
+	}
+
+	.ant-radio-checked .ant-radio-inner {
+		border-color: #1890ff;
+	}
+
+	.ant-radio-inner::after {
+		background-color: #1890ff;
+	}
+
+	.ant-typography-danger {
+		color: #ff4d4f;
+	}
+}

@@ -4,8 +4,8 @@ import { AntdRegistry } from '@ant-design/nextjs-registry';
 import Header from '@/app/components/header';
 import Footer from '@/app/components/footer';
 import { AuthProvider } from '@/app/contexts/AuthProvider';
-import '@/app/globals.scss';
 import Provider from '@/app/utils/Provider';
+import '@/app/globals.scss';
 
 const inter = Inter({ subsets: ['latin'] });
 
