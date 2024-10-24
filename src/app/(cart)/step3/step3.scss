@@ -1,0 +1,40 @@
+.payment-confirmation {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	text-align: center;
+	padding: 20px;
+	background-color: #ffffff;
+
+	.check-icon {
+		width: 100px;
+		height: 100px;
+		background-color: #52c41a;
+		border-radius: 50%;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		margin-bottom: 20px;
+
+		.anticon {
+			font-size: 60px;
+			color: #ffffff;
+		}
+	}
+
+	.success-message {
+		color: #52c41a;
+		margin-bottom: 20px;
+	}
+
+	.delivery-info,
+	.wish-message {
+		max-width: 400px;
+		margin-bottom: 10px;
+	}
+
+	.order-number {
+		font-size: 18px;
+	}
+}

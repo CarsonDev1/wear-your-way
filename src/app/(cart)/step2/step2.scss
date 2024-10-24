@@ -1,87 +1,140 @@
 .exact-payment-confirmation {
+	max-width: 960px;
 	margin: 0 auto;
+	padding: 32px;
+	background-color: #ffffff;
+	border-radius: 12px;
+	box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 
 	.section-title {
-		font-size: 18px;
-		font-weight: bold;
-		margin-bottom: 16px;
+		font-size: 22px;
+		font-weight: 700;
+		margin-bottom: 24px;
 		padding-bottom: 8px;
-		border-bottom: 2px solid #ffd700;
+		border-bottom: 3px solid #ff6347; /* Sử dụng màu tươi sáng hơn cho nhấn mạnh */
+		color: #333;
 	}
 
 	.payment-options {
-		margin-bottom: 24px;
+		margin-bottom: 32px;
 
 		.ant-radio-wrapper {
 			display: flex;
 			align-items: center;
-			margin-bottom: 16px;
+			padding: 16px;
+			border: 1px solid #e6e6e6;
+			border-radius: 8px;
+			transition: background-color 0.3s ease;
 			width: 100%;
+
+			&:hover {
+				background-color: #f0f0f0;
+			}
 
 			span:last-child {
 				display: flex;
 				align-items: center;
-				justify-content: space-between;
+				max-width: 100%;
+				gap: 12px;
 			}
 		}
 
-		.ant-radio {
-			margin-right: 8px;
-		}
-
 		.ant-radio-inner {
-			width: 18px;
-			height: 18px;
+			width: 22px;
+			height: 22px;
+			border-color: #ff6347;
 		}
 
 		.ant-radio-input:focus + .ant-radio-inner {
-			box-shadow: 0 0 0 2px rgba(24, 144, 255, 0.2);
+			box-shadow: 0 0 0 3px rgba(255, 99, 71, 0.3);
 		}
 	}
 
 	.qr-section {
+		text-align: center;
 		border: 1px solid #d9d9d9;
-		padding: 16px;
-		border-radius: 4px;
+		padding: 24px;
+		border-radius: 8px;
+		background-color: #f9f9f9;
+		display: flex;
+		justify-content: center;
+		flex-direction: column;
+		align-items: center;
 
 		h5 {
 			margin-bottom: 16px;
+			color: #ff6347;
 		}
 
 		ul {
 			list-style-type: none;
 			padding: 0;
 			margin: 16px 0;
+			font-size: 16px;
+			color: #666;
 		}
 
 		.ant-typography-secondary {
-			font-size: 12px;
+			font-size: 14px;
+			margin-top: 10px;
+			display: block;
+			color: #888;
+		}
+
+		.qr-section-button {
+			margin-top: 16px;
+
+			.ant-btn-primary {
+				background-color: #ff6347;
+				border-color: #ff6347;
+				font-size: 16px;
+				padding: 10px 20px;
+				border-radius: 8px;
+
+				&:hover {
+					background-color: #ff8566;
+					border-color: #ff8566;
+				}
+			}
 		}
 	}
 
 	.customer-info {
 		list-style-type: none;
 		padding: 0;
-		margin-bottom: 24px;
+		margin-bottom: 32px;
+		font-size: 18px;
+		color: #333;
 
 		li {
-			margin-bottom: 8px;
+			margin-bottom: 10px;
+		}
+
+		.ant-typography {
+			font-weight: 600;
 		}
 	}
 
 	.order-summary {
 		display: flex;
+		flex-direction: column;
 		margin-bottom: 24px;
-		border-bottom: 1px solid #d9d9d9;
-		padding-bottom: 16px;
+		padding-bottom: 24px;
+		border-bottom: 1px solid #e6e6e6;
 
 		.order-details {
-			margin-left: 16px;
 			display: flex;
-			flex-direction: column;
+			margin-bottom: 24px;
+
+			img {
+				margin-right: 16px;
+				border-radius: 8px;
+			}
 
 			.price {
 				margin-top: 8px;
+				color: #ff6347;
+				font-weight: 700;
 			}
 		}
 	}
@@ -93,25 +146,33 @@
 
 		h4 {
 			margin-bottom: 0;
+			font-size: 24px;
+			color: #333;
+		}
+
+		.ant-typography-danger {
+			font-size: 26px;
+			color: #ff6347;
+			font-weight: 700;
 		}
 	}
 }
 
-// Override Ant Design styles
+/* Override Ant Design styles */
 :global {
 	.ant-radio-inner {
 		border-color: #d9d9d9;
 	}
 
 	.ant-radio-checked .ant-radio-inner {
-		border-color: #1890ff;
+		border-color: #ff6347;
 	}
 
 	.ant-radio-inner::after {
-		background-color: #1890ff;
+		background-color: #ff6347;
 	}
 
 	.ant-typography-danger {
-		color: #ff4d4f;
+		color: #ff6347;
 	}
 }

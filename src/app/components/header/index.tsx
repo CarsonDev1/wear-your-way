@@ -71,7 +71,7 @@ const Header = () => {
 					<nav className={`navigation ${isMobileMenuOpen ? 'open' : ''}`}>
 						<ul>
 							<li>
-								<a href='#'>thiết kế</a>
+								<Link href='/design'>thiết kế</Link>
 							</li>
 							<li>
 								<Link href='/product-list'>sản phẩm mẫu</Link>

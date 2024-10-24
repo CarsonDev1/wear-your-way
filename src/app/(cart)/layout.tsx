@@ -8,8 +8,8 @@ import Footer from '@/app/components/footer';
 import { AuthProvider } from '@/app/contexts/AuthProvider';
 import { AntdRegistry } from '@ant-design/nextjs-registry';
 import Step2 from '@/app/(cart)/step2';
-
-const Step3 = () => <div>Step 3 Content</div>;
+import Provider from '@/app/utils/Provider';
+import Step3 from '@/app/(cart)/step3';
 
 const CartLayout: React.FC = () => {
 	const [currentStep, setCurrentStep] = useState(1);
@@ -27,7 +27,7 @@ const CartLayout: React.FC = () => {
 			case 1:
 				return <Step1 nextStep={nextStep} />;
 			case 2:
-				return <Step2 />;
+				return <Step2 nextStep={nextStep} />;
 			case 3:
 				return <Step3 />;
 			default:
@@ -38,19 +38,18 @@ const CartLayout: React.FC = () => {
 	return (
 		<html lang='en'>
 			<body>
-				<AuthProvider>
-					<AntdRegistry>
-						<Header />
-						<div className='cart-layout sec-com'>
-							<ProgressBar currentStep={currentStep} />
-							<div className='cart-content'>{renderStepContent()}</div>
-							<div className='navigation-buttons'>
-								{currentStep > 1 && <button onClick={prevStep}>Quay lại</button>}
+				<Provider>
+					<AuthProvider>
+						<AntdRegistry>
+							<Header />
+							<div className='cart-layout sec-com'>
+								<ProgressBar currentStep={currentStep} />
+								<div className='cart-content'>{renderStepContent()}</div>
 							</div>
-						</div>
-						<Footer />
-					</AntdRegistry>
-				</AuthProvider>
+							<Footer />
+						</AntdRegistry>
+					</AuthProvider>
+				</Provider>
 			</body>
 		</html>
 	);

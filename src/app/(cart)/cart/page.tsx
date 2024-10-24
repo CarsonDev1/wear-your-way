@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 'use client';
 import React, { useEffect, useState } from 'react';
 import { Row, Col, Input, Button, message } from 'antd';
@@ -127,6 +128,8 @@ const Step1: React.FC<Step1Props> = ({ nextStep }) => {
 			try {
 				const response = await api.post('/orders/create', orderData);
 				if (response.status === 201) {
+					const orderId = response.data._id; // Assuming _id is the orderId in the response
+					localStorage.setItem('orderId', orderId); // Store orderId in local storage
 					message.success('Đơn hàng đã được tạo thành công');
 					nextStep();
 				} else {

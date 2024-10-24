@@ -1,0 +1,141 @@
+.product-page {
+	padding: 24px;
+	background-color: #f0f2f5;
+	min-height: 100vh; // Sử dụng min-height để tránh các vấn đề liên quan đến 100dvh trên mobile
+
+	.product-card {
+		box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+		border-radius: 8px;
+
+		.ant-card-head-title {
+			font-size: 18px;
+			font-weight: 600;
+			color: #333;
+		}
+
+		.ant-card-body {
+			padding: 0;
+		}
+
+		.ant-table-wrapper {
+			.ant-table-thead > tr > th {
+				background-color: #fafafa;
+				color: #333;
+				font-weight: 600;
+			}
+
+			.ant-table-tbody > tr > td {
+				border-bottom: 1px solid #f0f0f0;
+			}
+
+			.ant-table-tbody > tr:last-child > td {
+				border-bottom: none;
+			}
+		}
+	}
+
+	// Điều chỉnh responsive cho bảng ở các màn hình nhỏ hơn
+	@media (max-width: 768px) {
+		.product-card {
+			.ant-card-head-title {
+				font-size: 16px;
+			}
+
+			.ant-table-wrapper {
+				.ant-table {
+					font-size: 12px;
+
+					.ant-table-thead > tr > th {
+						font-size: 14px;
+					}
+
+					.ant-table-tbody > tr > td {
+						font-size: 12px;
+					}
+				}
+			}
+		}
+	}
+
+	@media (max-width: 576px) {
+		padding: 16px;
+
+		.product-card {
+			.ant-card-head-title {
+				font-size: 14px;
+			}
+
+			.ant-table-wrapper {
+				.ant-table {
+					font-size: 10px;
+
+					.ant-table-thead > tr > th {
+						font-size: 12px;
+					}
+
+					.ant-table-tbody > tr > td {
+						font-size: 10px;
+					}
+				}
+			}
+		}
+	}
+}
+
+// Override Ant Design styles
+:global {
+	.ant-btn-primary {
+		background-color: #1890ff;
+		border-color: #1890ff;
+
+		&:hover,
+		&:focus {
+			background-color: #40a9ff;
+			border-color: #40a9ff;
+		}
+	}
+
+	.ant-btn-primary.ant-btn-dangerous {
+		background-color: #ff4d4f;
+		border-color: #ff4d4f;
+
+		&:hover,
+		&:focus {
+			background-color: #ff7875;
+			border-color: #ff7875;
+		}
+	}
+
+	.ant-modal-header {
+		background-color: #fafafa;
+		border-bottom: 1px solid #f0f0f0;
+	}
+
+	.ant-modal-title {
+		font-size: 16px;
+		font-weight: 600;
+		color: #333;
+	}
+
+	.ant-form-item-label > label {
+		font-weight: 500;
+	}
+
+	// Responsive Modal
+	@media (max-width: 768px) {
+		.ant-modal {
+			width: 90% !important;
+		}
+	}
+
+	@media (max-width: 576px) {
+		.ant-modal {
+			width: 100% !important;
+			margin: 0 8px;
+		}
+
+		.ant-modal-body {
+			padding: 16px !important;
+		}
+	}
+}
