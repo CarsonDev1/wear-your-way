@@ -6,7 +6,7 @@ import Link from 'next/link';
 import './product-list.scss';
 
 import { Product } from '@/app/types/Product.type';
-import { getProducts } from '@/app/apis/product/getProduct';
+import { getProducts } from '@/app/api/product/getProduct';
 import { useQuery } from '@tanstack/react-query';
 
 const ProductList: React.FC = () => {

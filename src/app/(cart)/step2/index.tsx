@@ -9,10 +9,10 @@ import Payment05 from '@/app/assets/images/cart/payment-05.png';
 import QR from '@/app/assets/images/cart/qr.png';
 import Image from 'next/image';
 import { useQuery } from '@tanstack/react-query';
-import { getOrderById } from '@/app/apis/cart/getOrderById';
-import { initiateMomoPayment } from '@/app/apis/cart/payment';
+import { getOrderById } from '@/app/api/cart/getOrderById';
+import { initiateMomoPayment } from '@/app/api/cart/payment';
 import './step2.scss';
-import { initiateVnpayPayment } from '@/app/apis/cart/paymentVnpay';
+import { initiateVnpayPayment } from '@/app/api/cart/paymentVnpay';
 
 const { Title, Text } = Typography;
 

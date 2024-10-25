@@ -4,13 +4,13 @@ import { Card, Table, Button, Space, Modal, Form, Input, InputNumber, Row, Col, 
 import { EditOutlined, DeleteOutlined, PlusOutlined } from '@ant-design/icons';
 import { useQuery } from '@tanstack/react-query';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
-import { getProducts } from '@/app/apis/product/getProduct';
+import { getProducts } from '@/app/api/product/getProduct';
 import { Product } from '@/app/types/Product.type';
-import { createProduct } from '@/app/apis/product/createProduct';
-import { deleteProduct } from '@/app/apis/product/deleteProduct'; // Import API deleteProduct
+import { createProduct } from '@/app/api/product/createProduct';
+import { deleteProduct } from '@/app/api/product/deleteProduct'; // Import API deleteProduct
 import Swal from 'sweetalert2';
 import Image from 'next/image';
-import { updateProduct } from '@/app/apis/product/updateProduct';
+import { updateProduct } from '@/app/api/product/updateProduct';
 import './product.scss';
 
 const ProductPage: React.FC = () => {

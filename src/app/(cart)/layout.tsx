@@ -35,14 +35,6 @@ const CartLayout: React.FC = () => {
 		}
 	};
 
-	const prevStep = (): void => {
-		if (currentStep > 1) {
-			const prevStep = currentStep - 1;
-			setCurrentStep(prevStep);
-			router.push(`/cart?step=${prevStep}`);
-		}
-	};
-
 	const renderStepContent = (): React.ReactNode => {
 		switch (currentStep) {
 			case 1:

@@ -1,7 +1,7 @@
 'use client';
 import { useParams } from 'next/navigation';
 import { useQuery } from '@tanstack/react-query';
-import { getProductById } from '@/app/apis/product/getProductById';
+import { getProductById } from '@/app/api/product/getProductById';
 import { useState } from 'react';
 import { Row, Col, Rate, Button, Spin } from 'antd';
 import Image from 'next/image';

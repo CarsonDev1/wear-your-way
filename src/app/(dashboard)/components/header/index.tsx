@@ -3,7 +3,7 @@ import React from 'react';
 import { Input, Dropdown, Menu, Spin } from 'antd';
 import { SearchOutlined, SettingOutlined, BellOutlined, UserOutlined } from '@ant-design/icons';
 import { useQuery } from '@tanstack/react-query';
-import { getAccount } from '@/app/apis/user/getAccount';
+import { getAccount } from '@/app/api/user/getAccount';
 import { useAuth } from '@/app/contexts/AuthProvider';
 import './header.scss';
 

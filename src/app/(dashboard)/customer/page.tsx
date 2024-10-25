@@ -8,9 +8,9 @@ import { Account } from '@/app/types/Account.type';
 import Swal from 'sweetalert2';
 import Image from 'next/image';
 import './customer.scss';
-import { getAccounts } from '@/app/apis/user/getAccounts';
-import { deleteAccount } from '@/app/apis/user/deleteAccount';
-import { updateAccount } from '@/app/apis/user/updateAcount';
+import { getAccounts } from '@/app/api/user/getAccounts';
+import { deleteAccount } from '@/app/api/user/deleteAccount';
+import { updateAccount } from '@/app/api/user/updateAcount';
 
 const Customer: React.FC = () => {
 	const queryClient = useQueryClient();

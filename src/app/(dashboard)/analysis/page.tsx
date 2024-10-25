@@ -4,9 +4,9 @@ import { Card, Table, Button, Space, Modal, Form, Select, Spin } from 'antd';
 import { EditOutlined, DeleteOutlined } from '@ant-design/icons';
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import Swal from 'sweetalert2';
-import { getOrders } from '@/app/apis/cart/getOrder';
-import { updateOrderStatus } from '@/app/apis/cart/updateOrder';
-import { deleteOrder } from '@/app/apis/cart/deleteOrder';
+import { getOrders } from '@/app/api/cart/getOrder';
+import { updateOrderStatus } from '@/app/api/cart/updateOrder';
+import { deleteOrder } from '@/app/api/cart/deleteOrder';
 import './orders.scss';
 
 interface OrderProduct {

@@ -5,7 +5,7 @@ import { CheckOutlined } from '@ant-design/icons';
 import { Typography } from 'antd';
 
 import './step3.scss';
-import { getOrderById } from '@/app/apis/cart/getOrderById';
+import { getOrderById } from '@/app/api/cart/getOrderById';
 import { useQuery } from '@tanstack/react-query';
 
 const { Title, Paragraph, Text } = Typography;
