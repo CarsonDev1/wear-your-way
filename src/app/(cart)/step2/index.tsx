@@ -8,15 +8,38 @@ import Payment04 from '@/app/assets/images/cart/payment-04.png';
 import Payment05 from '@/app/assets/images/cart/payment-05.png';
 import QR from '@/app/assets/images/cart/qr.png';
 import Image from 'next/image';
-import { useQuery } from '@tanstack/react-query'; // Import useQuery
-import { getOrderById } from '@/app/apis/cart/getOrderById'; // Import getOrderById
+import { useQuery } from '@tanstack/react-query';
+import { getOrderById } from '@/app/apis/cart/getOrderById';
 import { initiateMomoPayment } from '@/app/apis/cart/payment';
 import './step2.scss';
+import { initiateVnpayPayment } from '@/app/apis/cart/paymentVnpay';
 
 const { Title, Text } = Typography;
 
 interface Step1Props {
 	nextStep: () => void;
+}
+
+interface Product {
+	name: string;
+	price: number;
+	imageUrls?: string[];
+	size?: string[];
+}
+
+interface ProductWrapper {
+	product: Product;
+	quantity: number;
+}
+
+interface Order {
+	_id: string;
+	customerName: string;
+	customerPhone: string;
+	customerAddress: string;
+	totalPrice: number;
+	status: string;
+	products: ProductWrapper[];
 }
 
 const Step2: React.FC<Step1Props> = ({ nextStep }) => {
@@ -34,7 +57,7 @@ const Step2: React.FC<Step1Props> = ({ nextStep }) => {
 		data: order,
 		isLoading,
 		error,
-	} = useQuery({
+	} = useQuery<Order | undefined>({
 		queryKey: ['order', orderId],
 		queryFn: () => getOrderById(orderId as string),
 		enabled: !!orderId,
@@ -63,6 +86,19 @@ const Step2: React.FC<Step1Props> = ({ nextStep }) => {
 		}
 	};
 
+	const handleVnpayPayment = async () => {
+		try {
+			const response = await initiateVnpayPayment(order?._id, order?.totalPrice);
+			if (response.payUrl) {
+				window.location.href = response.payUrl;
+			} else {
+				notification.error({ message: 'Failed to initiate VNPAY payment' });
+			}
+		} catch (error: any) {
+			notification.error({ message: 'Error during VNPAY payment initiation', description: error.message });
+		}
+	};
+
 	const renderQRSection = () => {
 		switch (paymentMethod) {
 			case 'momo':
@@ -85,17 +121,24 @@ const Step2: React.FC<Step1Props> = ({ nextStep }) => {
 							Sau khi chuyển khoản thành công bạn sẽ tự động được gửi đơn hàng xác nhận
 						</Text>
 						<span>Hoặc</span>
-						{paymentMethod === 'momo' && (
-							<div className='qr-section'>
-								<Button type='primary' onClick={handleMomoPayment}>
-									Thanh Toán với MoMo
-								</Button>
-							</div>
-						)}
+						<div className='qr-section'>
+							<Button type='primary' onClick={handleMomoPayment}>
+								Thanh Toán với MoMo
+							</Button>
+						</div>
 					</>
 				);
 			case 'bank':
-				return <Text>Comming soon</Text>;
+				return (
+					<>
+						<Title level={5}>VNPAY thanh toán</Title>
+						<div className='qr-section'>
+							<Button type='primary' onClick={handleVnpayPayment}>
+								Thanh Toán với VNPAY
+							</Button>
+						</div>
+					</>
+				);
 			case 'credit':
 				return <Text>Comming soon</Text>;
 			case 'cod':
@@ -132,16 +175,16 @@ const Step2: React.FC<Step1Props> = ({ nextStep }) => {
 							</Radio>
 							<Radio value='bank'>
 								<span>Thanh toán ngân hàng nội địa</span>
-								<Image src={Payment02} alt='MoMo' width={40} height={40} />
+								<Image src={Payment02} alt='VNPAY' width={40} height={40} />
 							</Radio>
 							<Radio value='credit'>
 								<span>Thanh toán thẻ quốc tế Visa, MasterCard, JCB</span>
-								<Image src={Payment03} alt='MoMo' width={40} height={40} />
-								<Image src={Payment04} alt='MoMo' width={40} height={40} />
+								<Image src={Payment03} alt='Visa' width={40} height={40} />
+								<Image src={Payment04} alt='MasterCard' width={40} height={40} />
 							</Radio>
 							<Radio value='cod'>
 								<span>Thanh toán bằng tiền mặt khi nhận hàng</span>
-								<Image src={Payment05} alt='MoMo' width={40} height={40} />
+								<Image src={Payment05} alt='COD' width={40} height={40} />
 							</Radio>
 						</Space>
 					</Radio.Group>
@@ -174,18 +217,17 @@ const Step2: React.FC<Step1Props> = ({ nextStep }) => {
 					<div className='order-summary'>
 						{order?.products.map((productWrapper, index) => (
 							<div key={index} className='order-details'>
-								{/* Access the product's imageUrls array */}
 								<Image
-									src={productWrapper.product.imageUrls[0]} // First image from imageUrls array
+									src={productWrapper.product.imageUrls?.[0] || '/default-image.jpg'}
 									alt={productWrapper.product.name}
 									width={100}
 									height={100}
 								/>
 								<div>
-									<Text strong>{productWrapper.productName || 'N/A'}</Text>
+									<Text strong>{productWrapper.product.name}</Text>
 									<Text>
 										Số lượng: {productWrapper.quantity} -{' '}
-										<Text type='danger'>{productWrapper.product.size.join(', ') || 'N/A'}</Text>
+										<Text type='danger'>{productWrapper.product.size?.join(', ') || 'N/A'}</Text>
 									</Text>
 									<Text strong className='price'>
 										{productWrapper.product.price

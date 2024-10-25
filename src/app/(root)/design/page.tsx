@@ -99,12 +99,7 @@ const TShirtCustomizer: React.FC = () => {
 
 				<div className='price-display'>
 					<span>Giá</span>
-					<InputNumber
-						value={price}
-						formatter={(value) => `${value}đ`}
-						parser={(value) => value!.replace('đ', '')}
-						disabled
-					/>
+					<InputNumber value={price} formatter={(value) => `${value}đ`} disabled />
 				</div>
 			</div>
 

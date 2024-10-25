@@ -250,13 +250,6 @@ const Customer: React.FC = () => {
 					<Form.Item name='address' label='Address'>
 						<Input />
 					</Form.Item>
-					<Form.Item
-						name='role'
-						label='Role'
-						rules={[{ required: true, message: 'Please select the role!' }]}
-					>
-						<Input />
-					</Form.Item>
 					<Form.Item name='avatar' label='Avatar'>
 						{editingAccount && editingAccount.avatar && (
 							<div>

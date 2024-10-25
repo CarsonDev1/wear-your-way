@@ -1,5 +1,6 @@
 'use client';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { useRouter, useSearchParams } from 'next/navigation';
 import ProgressBar from '@/app/components/progress-bar';
 import Step1 from '@/app/(cart)/cart/page';
 import '@/app/globals.scss';
@@ -12,17 +13,37 @@ import Provider from '@/app/utils/Provider';
 import Step3 from '@/app/(cart)/step3';
 
 const CartLayout: React.FC = () => {
-	const [currentStep, setCurrentStep] = useState(1);
+	const router = useRouter();
+	const searchParams = useSearchParams();
+	const [currentStep, setCurrentStep] = useState<number>(1);
 
-	const nextStep = () => {
-		if (currentStep < 3) setCurrentStep(currentStep + 1);
+	// Update step based on URL search params
+	useEffect(() => {
+		const stepFromQuery = searchParams.get('step');
+		const stepNumber = stepFromQuery ? Number(stepFromQuery) : 1;
+
+		if (stepNumber >= 1 && stepNumber <= 3) {
+			setCurrentStep(stepNumber);
+		}
+	}, [searchParams]);
+
+	const nextStep = (): void => {
+		if (currentStep < 3) {
+			const nextStep = currentStep + 1;
+			setCurrentStep(nextStep);
+			router.push(`/cart?step=${nextStep}`);
+		}
 	};
 
-	const prevStep = () => {
-		if (currentStep > 1) setCurrentStep(currentStep - 1);
+	const prevStep = (): void => {
+		if (currentStep > 1) {
+			const prevStep = currentStep - 1;
+			setCurrentStep(prevStep);
+			router.push(`/cart?step=${prevStep}`);
+		}
 	};
 
-	const renderStepContent = () => {
+	const renderStepContent = (): React.ReactNode => {
 		switch (currentStep) {
 			case 1:
 				return <Step1 nextStep={nextStep} />;

@@ -24,9 +24,9 @@
     "less-loader": "^12.2.0",
     "next": "14.2.14",
     "next-plugin-antd-less": "^1.8.0",
-    "react": "^18",
+    "react": "^18.3.1",
     "react-chartjs-2": "^5.2.0",
-    "react-dom": "^18",
+    "react-dom": "^18.3.1",
     "react-draggable": "^4.4.6",
     "react-icons": "^5.3.0",
     "react-konva": "^18.2.10",
@@ -39,6 +39,7 @@
     "swiper": "^11.1.14"
   },
   "devDependencies": {
+    "@types/fabric": "^5.3.9",
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",

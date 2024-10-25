@@ -7,6 +7,7 @@ import Swal from 'sweetalert2';
 import { getOrders } from '@/app/apis/cart/getOrder';
 import { updateOrderStatus } from '@/app/apis/cart/updateOrder';
 import { deleteOrder } from '@/app/apis/cart/deleteOrder';
+import './orders.scss';
 
 interface OrderProduct {
 	product: {
@@ -191,7 +192,7 @@ const OrderManagement: React.FC = () => {
 
 	return (
 		<div className='order-page'>
-			<Card title='Order Management' className='Order-card'>
+			<Card title='Order Management' className='order-card'>
 				<Table columns={columns} dataSource={orderList} rowKey='_id' scroll={{ x: 1000 }} />
 			</Card>
 
