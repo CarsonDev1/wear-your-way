@@ -1,5 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
-/* eslint-disable @typescript-eslint/no-explicit-any */
 "use client"
 
 // Inspired by react-hot-toast library
@@ -38,21 +36,21 @@ type ActionType = typeof actionTypes
 
 type Action =
   | {
-    type: ActionType["ADD_TOAST"]
-    toast: ToasterToast
-  }
+      type: ActionType["ADD_TOAST"]
+      toast: ToasterToast
+    }
   | {
-    type: ActionType["UPDATE_TOAST"]
-    toast: Partial<ToasterToast>
-  }
+      type: ActionType["UPDATE_TOAST"]
+      toast: Partial<ToasterToast>
+    }
   | {
-    type: ActionType["DISMISS_TOAST"]
-    toastId?: ToasterToast["id"]
-  }
+      type: ActionType["DISMISS_TOAST"]
+      toastId?: ToasterToast["id"]
+    }
   | {
-    type: ActionType["REMOVE_TOAST"]
-    toastId?: ToasterToast["id"]
-  }
+      type: ActionType["REMOVE_TOAST"]
+      toastId?: ToasterToast["id"]
+    }
 
 interface State {
   toasts: ToasterToast[]
@@ -110,9 +108,9 @@ export const reducer = (state: State, action: Action): State => {
         toasts: state.toasts.map((t) =>
           t.id === toastId || toastId === undefined
             ? {
-              ...t,
-              open: false,
-            }
+                ...t,
+                open: false,
+              }
             : t
         ),
       }
@@ -160,7 +158,7 @@ function toast({ ...props }: Toast) {
       ...props,
       id,
       open: true,
-      onOpenChange: (open: any) => {
+      onOpenChange: (open) => {
         if (!open) dismiss()
       },
     },
