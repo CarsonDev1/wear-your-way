@@ -2,7 +2,6 @@
 import React, { useState, useEffect } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
 import ProgressBar from '@/app/components/progress-bar';
-import Step1 from '@/app/(cart)/cart/page';
 import '@/app/globals.scss';
 import Header from '@/app/components/header';
 import Footer from '@/app/components/footer';
@@ -11,6 +10,7 @@ import { AntdRegistry } from '@ant-design/nextjs-registry';
 import Step2 from '@/app/(cart)/step2';
 import Provider from '@/app/utils/Provider';
 import Step3 from '@/app/(cart)/step3';
+import Step1 from '@/app/(cart)/cart';
 
 const CartLayout: React.FC = () => {
 	const router = useRouter();
