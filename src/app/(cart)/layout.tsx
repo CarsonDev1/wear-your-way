@@ -17,7 +17,6 @@ const CartLayout: React.FC = () => {
 	const searchParams = useSearchParams();
 	const [currentStep, setCurrentStep] = useState<number>(1);
 
-	// Update step based on URL search params
 	useEffect(() => {
 		const stepFromQuery = searchParams.get('step');
 		const stepNumber = stepFromQuery ? Number(stepFromQuery) : 1;
