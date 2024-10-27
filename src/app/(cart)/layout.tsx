@@ -10,7 +10,7 @@ import { AntdRegistry } from '@ant-design/nextjs-registry';
 import Step2 from '@/app/(cart)/step2';
 import Provider from '@/app/utils/Provider';
 import Step3 from '@/app/(cart)/step3';
-import Cart from '@/app/(cart)/page';
+import Cart from '@/app/(cart)/cart/page';
 
 const CartLayout: React.FC = () => {
 	const router = useRouter();
