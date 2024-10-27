@@ -38,8 +38,8 @@ const LoginPage: React.FC = () => {
 					autoClose: 3000,
 				});
 			}
-		} catch (error: any) {
-			toast.error(error.response?.data?.error || 'Đăng nhập thất bại. Vui lòng thử lại.', {
+		} catch {
+			toast.error('Đăng nhập thất bại. Vui lòng thử lại.', {
 				position: 'top-right',
 				autoClose: 3000,
 			});

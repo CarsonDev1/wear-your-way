@@ -71,7 +71,7 @@ const Header = () => {
 					<nav className={`navigation ${isMobileMenuOpen ? 'open' : ''}`}>
 						<ul>
 							<li>
-								<Link href='/design'>thiết kế</Link>
+								<Link href='https://custom-tshirt-two.vercel.app'>thiết kế</Link>
 							</li>
 							<li>
 								<Link href='/product-list'>sản phẩm mẫu</Link>

@@ -25,6 +25,7 @@ const RegisterPage: React.FC = () => {
 	const [loading, setLoading] = useState(false);
 	const router = useRouter();
 
+	// eslint-disable-next-line @typescript-eslint/no-explicit-any
 	const onFinish = async (values: any) => {
 		const { username, email, phone, password } = values;
 		const formData = new FormData();
@@ -49,8 +50,8 @@ const RegisterPage: React.FC = () => {
 					router.push('/login');
 				}, 3000);
 			}
-		} catch (error: any) {
-			toast.error(error.response?.data?.error || 'Đăng ký thất bại. Vui lòng thử lại sau.', {
+		} catch {
+			toast.error('Đăng ký thất bại. Vui lòng thử lại sau.', {
 				position: 'top-right',
 				autoClose: 3000,
 			});
