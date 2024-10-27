@@ -30,7 +30,7 @@ const CartLayout: React.FC = () => {
 		if (currentStep < 3) {
 			const nextStep = currentStep + 1;
 			setCurrentStep(nextStep);
-			router.push(`/cart?step=${nextStep}`);
+			router.push(`/cart-payment?step=${nextStep}`);
 		}
 	};
 
