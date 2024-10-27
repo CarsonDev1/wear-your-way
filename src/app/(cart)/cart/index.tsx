@@ -146,7 +146,7 @@ const Step1: React.FC<Step1Props> = ({ nextStep }) => {
 	};
 
 	return (
-		<div className='responsive-checkout-page container'>
+		<div className='container responsive-checkout-page'>
 			<Row gutter={[24, 24]}>
 				<Col xs={24} md={12}>
 					<div className='order-summary'>
