@@ -101,7 +101,7 @@ const Header = () => {
 					</nav>
 
 					<div className='header-icons'>
-						<Link href='/step1'>
+						<Link href='/cart'>
 							<div className='icon cart-icon'>
 								<MdOutlineAddShoppingCart />
 								{cartCount > 0 && <span className='cart-count'>{cartCount}</span>}
