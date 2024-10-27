@@ -10,7 +10,7 @@ import { AntdRegistry } from '@ant-design/nextjs-registry';
 import Step2 from '@/app/(cart)/step2';
 import Provider from '@/app/utils/Provider';
 import Step3 from '@/app/(cart)/step3';
-import Cart from '@/app/(cart)/cart/page';
+import Step1 from '@/app/(cart)/cart/page';
 
 const CartLayout: React.FC = () => {
 	const router = useRouter();
@@ -26,7 +26,7 @@ const CartLayout: React.FC = () => {
 		}
 	}, [searchParams]);
 
-	const nextStep = (): void => {
+	const nextStep = () => {
 		if (currentStep < 3) {
 			const nextStep = currentStep + 1;
 			setCurrentStep(nextStep);
@@ -37,13 +37,13 @@ const CartLayout: React.FC = () => {
 	const renderStepContent = (): React.ReactNode => {
 		switch (currentStep) {
 			case 1:
-				return <Cart nextStep={nextStep} />;
+				return <Step1 nextStep={nextStep} />;
 			case 2:
 				return <Step2 nextStep={nextStep} />;
 			case 3:
 				return <Step3 />;
 			default:
-				return <Cart nextStep={nextStep} />;
+				return <Step1 nextStep={nextStep} />;
 		}
 	};
 
