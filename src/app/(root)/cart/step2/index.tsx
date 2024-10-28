@@ -16,7 +16,7 @@ import { initiateVnpayPayment } from '@/app/api/cart/paymentVnpay';
 
 const { Title, Text } = Typography;
 
-interface Step1Props {
+interface PageProps {
 	nextStep: () => void;
 }
 
@@ -42,11 +42,13 @@ interface Order {
 	products: ProductWrapper[];
 }
 
-const Step2: React.FC<Step1Props> = ({ nextStep }) => {
+const Step2: React.FC<PageProps> = ({ nextStep }) => {
 	const [paymentMethod, setPaymentMethod] = useState('momo');
 	const [orderId, setOrderId] = useState<string | null>(null);
+	const [mounted, setMounted] = useState(false);
 
 	useEffect(() => {
+		setMounted(true);
 		const storedOrderId = localStorage.getItem('orderId');
 		if (storedOrderId) {
 			setOrderId(storedOrderId);
@@ -140,13 +142,14 @@ const Step2: React.FC<Step1Props> = ({ nextStep }) => {
 					</>
 				);
 			case 'credit':
-				return <Text>Comming soon</Text>;
 			case 'cod':
 				return <Text>Comming soon</Text>;
 			default:
 				return null;
 		}
 	};
+
+	if (!mounted) return null; // Prevent server-client mismatch
 
 	if (isLoading) {
 		return (
@@ -215,8 +218,8 @@ const Step2: React.FC<Step1Props> = ({ nextStep }) => {
 						ĐƠN HÀNG
 					</Title>
 					<div className='order-summary'>
-						{order?.products.map((productWrapper, index) => (
-							<div key={index} className='order-details'>
+						{order?.products.map((productWrapper) => (
+							<div key={productWrapper.product.name + productWrapper.quantity} className='order-details'>
 								<Image
 									src={productWrapper.product.imageUrls?.[0] || '/default-image.jpg'}
 									alt={productWrapper.product.name}

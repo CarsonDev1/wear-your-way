@@ -2,22 +2,22 @@
 import React, { useState, useEffect } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
 import ProgressBar from '@/app/components/progress-bar';
-import '@/app/globals.scss';
-import Header from '@/app/components/header';
-import Footer from '@/app/components/footer';
 import { AuthProvider } from '@/app/contexts/AuthProvider';
 import { AntdRegistry } from '@ant-design/nextjs-registry';
-import Step2 from '@/app/(cart)/step2';
 import Provider from '@/app/utils/Provider';
-import Step3 from '@/app/(cart)/step3';
-import Step1 from '@/app/(cart)/cart/page';
+import Step1 from '@/app/(root)/cart/page';
+import Step2 from '@/app/(root)/cart/step2';
+import Step3 from '@/app/(root)/cart/step3';
+import '@/app/globals.scss';
 
 const CartLayout: React.FC = () => {
 	const router = useRouter();
 	const searchParams = useSearchParams();
 	const [currentStep, setCurrentStep] = useState<number>(1);
+	const [mounted, setMounted] = useState(false);
 
 	useEffect(() => {
+		setMounted(true);
 		const stepFromQuery = searchParams.get('step');
 		const stepNumber = stepFromQuery ? Number(stepFromQuery) : 1;
 
@@ -26,7 +26,7 @@ const CartLayout: React.FC = () => {
 		}
 	}, [searchParams]);
 
-	const nextStep = () => {
+	const nextStep: () => void = () => {
 		if (currentStep < 3) {
 			const nextStep = currentStep + 1;
 			setCurrentStep(nextStep);
@@ -47,23 +47,19 @@ const CartLayout: React.FC = () => {
 		}
 	};
 
+	if (!mounted) return null; // Prevents server-side rendering of this component
+
 	return (
-		<html lang='en'>
-			<body>
-				<Provider>
-					<AuthProvider>
-						<AntdRegistry>
-							<Header />
-							<div className='cart-layout sec-com'>
-								<ProgressBar currentStep={currentStep} />
-								<div className='cart-content'>{renderStepContent()}</div>
-							</div>
-							<Footer />
-						</AntdRegistry>
-					</AuthProvider>
-				</Provider>
-			</body>
-		</html>
+		<Provider>
+			<AuthProvider>
+				<AntdRegistry>
+					<div className='cart-layout sec-com'>
+						<ProgressBar currentStep={currentStep} />
+						<div className='cart-content'>{renderStepContent()}</div>
+					</div>
+				</AntdRegistry>
+			</AuthProvider>
+		</Provider>
 	);
 };
 
