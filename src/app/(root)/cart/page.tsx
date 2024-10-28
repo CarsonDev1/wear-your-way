@@ -20,10 +20,6 @@ interface CartItem {
 	quantity: number;
 }
 
-type PageProps = {
-	nextStep: () => void;
-};
-
 const Step1: React.FC<{ nextStep?: () => void }> = ({ nextStep }) => {
 	const [cartItems, setCartItems] = useState<CartItem[]>([]);
 	const [loading, setLoading] = useState(false);
