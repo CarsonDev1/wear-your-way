@@ -16,9 +16,9 @@ import { initiateVnpayPayment } from '@/app/api/cart/paymentVnpay';
 
 const { Title, Text } = Typography;
 
-interface PageProps {
+type PageProps = {
 	nextStep: () => void;
-}
+};
 
 interface Product {
 	name: string;

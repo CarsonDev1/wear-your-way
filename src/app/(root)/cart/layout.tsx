@@ -26,24 +26,24 @@ const CartLayout: React.FC = () => {
 		}
 	}, [searchParams]);
 
-	const nextStep: () => void = () => {
+	const goToNextStep = () => {
 		if (currentStep < 3) {
-			const nextStep = currentStep + 1;
-			setCurrentStep(nextStep);
-			router.push(`/cart?step=${nextStep}`);
+			const next = currentStep + 1;
+			setCurrentStep(next);
+			router.push(`/cart?step=${next}`);
 		}
 	};
 
 	const renderStepContent = (): React.ReactNode => {
 		switch (currentStep) {
 			case 1:
-				return <Step1 nextStep={nextStep} />;
+				return <Step1 nextStep={goToNextStep} />;
 			case 2:
-				return <Step2 nextStep={nextStep} />;
+				return <Step2 nextStep={goToNextStep} />;
 			case 3:
 				return <Step3 />;
 			default:
-				return <Step1 nextStep={nextStep} />;
+				return <Step1 nextStep={goToNextStep} />;
 		}
 	};
 
