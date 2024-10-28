@@ -24,7 +24,7 @@ type PageProps = {
 	nextStep: () => void;
 };
 
-const Step1: React.FC<PageProps> = ({ nextStep }) => {
+const Step1: React.FC<{ nextStep?: () => void }> = ({ nextStep }) => {
 	const [cartItems, setCartItems] = useState<CartItem[]>([]);
 	const [loading, setLoading] = useState(false);
 	const [formData, setFormData] = useState({
