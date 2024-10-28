@@ -20,7 +20,7 @@ interface CartItem {
 	quantity: number;
 }
 
-const Step1: React.FC<{ nextStep?: () => void }> = ({ nextStep }) => {
+const Step1: React.FC<{ nextStep?: () => void | undefined }> = ({ nextStep }) => {
 	const [cartItems, setCartItems] = useState<CartItem[]>([]);
 	const [loading, setLoading] = useState(false);
 	const [formData, setFormData] = useState({
