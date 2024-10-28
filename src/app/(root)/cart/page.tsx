@@ -3,7 +3,7 @@
 'use client';
 import React, { useEffect, useState } from 'react';
 import { Row, Col, Input, Button, message } from 'antd';
-import { CreditCardOutlined, DeleteOutlined, ExclamationCircleOutlined } from '@ant-design/icons'; // Import icons
+import { CreditCardOutlined, DeleteOutlined, ExclamationCircleOutlined } from '@ant-design/icons';
 import Image from 'next/image';
 import Swal from 'sweetalert2';
 import './cart.scss';
@@ -20,11 +20,11 @@ interface CartItem {
 	quantity: number;
 }
 
-interface PageProps {
+interface Step1Props {
 	nextStep: () => void;
 }
 
-const Step1: React.FC<PageProps> = ({ nextStep }) => {
+const Step1: React.FC<Step1Props> = ({ nextStep }) => {
 	const [cartItems, setCartItems] = useState<CartItem[]>([]);
 	const [loading, setLoading] = useState(false);
 	const [formData, setFormData] = useState({
@@ -89,7 +89,7 @@ const Step1: React.FC<PageProps> = ({ nextStep }) => {
 	};
 
 	const validateForm = () => {
-		const errors: typeof formErrors = {
+		const errors = {
 			name: '',
 			phone: '',
 			address: '',
@@ -129,8 +129,8 @@ const Step1: React.FC<PageProps> = ({ nextStep }) => {
 			try {
 				const response = await api.post('/orders/create', orderData);
 				if (response.status === 201) {
-					const orderId = response.data._id; // Assuming _id is the orderId in the response
-					localStorage.setItem('orderId', orderId); // Store orderId in local storage
+					const orderId = response.data._id;
+					localStorage.setItem('orderId', orderId);
 					message.success('Đơn hàng đã được tạo thành công');
 					if (nextStep) {
 						nextStep();
@@ -153,7 +153,7 @@ const Step1: React.FC<PageProps> = ({ nextStep }) => {
 			<Row gutter={[24, 24]}>
 				<Col xs={24} md={12}>
 					<div className='order-summary'>
-						<h2>CHI TIT ĐƠN HÀNG</h2>
+						<h2>CHI TIẾT ĐƠN HÀNG</h2>
 						{cartItems.length === 0 ? (
 							<p>Giỏ hàng của bạn trống</p>
 						) : (
@@ -242,7 +242,7 @@ const Step1: React.FC<PageProps> = ({ nextStep }) => {
 						</Button>
 
 						<Button type='primary' className='payment-btn'>
-							CẦN SẢN PHẨM KHÁC? CH���N THÊM....
+							CẦN SẢN PHẨM KHÁC? CHỌN THÊM....
 						</Button>
 					</div>
 				</Col>
