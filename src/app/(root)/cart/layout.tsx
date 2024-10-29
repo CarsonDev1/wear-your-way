@@ -1,30 +1,33 @@
+// app/(root)/cart/CartLayout.tsx
 'use client';
-import React, { useState, useEffect } from 'react';
-import { useRouter, useSearchParams } from 'next/navigation';
+export const dynamic = 'force-dynamic';
+
+import React, { useState, useEffect, Suspense } from 'react';
+import { useRouter } from 'next/navigation';
 import ProgressBar from '@/app/components/progress-bar';
 import { AuthProvider } from '@/app/contexts/AuthProvider';
 import { AntdRegistry } from '@ant-design/nextjs-registry';
 import Provider from '@/app/utils/Provider';
-import Step2 from '@/app/(root)/cart/step2';
-import Step3 from '@/app/(root)/cart/step3';
+import Step1 from './step1';
+import Step2 from './step2';
+import Step3 from './step3';
 import '@/app/globals.scss';
-import Page from '@/app/(root)/cart/page';
 
 const CartLayout: React.FC = () => {
 	const router = useRouter();
-	const searchParams = useSearchParams();
 	const [currentStep, setCurrentStep] = useState<number>(1);
 	const [mounted, setMounted] = useState(false);
 
 	useEffect(() => {
 		setMounted(true);
-		const stepFromQuery = searchParams.get('step');
+		const params = new URLSearchParams(window.location.search);
+		const stepFromQuery = params.get('step');
 		const stepNumber = stepFromQuery ? Number(stepFromQuery) : 1;
 
 		if (stepNumber >= 1 && stepNumber <= 3) {
 			setCurrentStep(stepNumber);
 		}
-	}, [searchParams]);
+	}, []);
 
 	const goToNextStep = () => {
 		if (currentStep < 3) {
@@ -37,26 +40,28 @@ const CartLayout: React.FC = () => {
 	const renderStepContent = (): React.ReactNode => {
 		switch (currentStep) {
 			case 1:
-				return <Page />;
+				return <Step1 />;
 			case 2:
 				return <Step2 nextStep={goToNextStep} />;
 			case 3:
 				return <Step3 />;
 			default:
-				return <Page />;
+				return <Step1 />;
 		}
 	};
 
-	if (!mounted) return null; // Prevents server-side rendering of this component
+	if (!mounted) return null;
 
 	return (
 		<Provider>
 			<AuthProvider>
 				<AntdRegistry>
-					<div className='cart-layout sec-com'>
-						<ProgressBar currentStep={currentStep} />
-						<div className='cart-content'>{renderStepContent()}</div>
-					</div>
+					<Suspense fallback={<div>Loading...</div>}>
+						<div className='cart-layout sec-com'>
+							<ProgressBar currentStep={currentStep} />
+							<div className='cart-content'>{renderStepContent()}</div>
+						</div>
+					</Suspense>
 				</AntdRegistry>
 			</AuthProvider>
 		</Provider>

@@ -1,7 +1,12 @@
-import Step1 from '@/app/(root)/cart/step1';
-import { FC } from 'react';
+// app/(root)/cart/page.tsx
+'use client';
+export const dynamic = 'force-dynamic';
 
-const Page: FC = () => {
-	return <Step1 />;
+import CartWrapper from '@/app/(root)/cart/CartWrapper';
+import React from 'react';
+
+const Page: React.FC = () => {
+	return <CartWrapper />;
 };
+
 export default Page;
