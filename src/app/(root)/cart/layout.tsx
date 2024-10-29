@@ -40,7 +40,7 @@ const CartLayout: React.FC = () => {
 	const renderStepContent = (): React.ReactNode => {
 		switch (currentStep) {
 			case 1:
-				return <Step1 />;
+				return <Step1 nextStep={goToNextStep} />;
 			case 2:
 				return <Step2 nextStep={goToNextStep} />;
 			case 3:
