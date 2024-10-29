@@ -1,0 +1,182 @@
+.responsive-checkout-page {
+	margin: 0 auto;
+
+	.order-summary {
+		box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+		padding: 24px;
+		border-radius: 8px;
+		h2 {
+			font-size: 18px;
+			margin-bottom: 16px;
+		}
+
+		.product-info {
+			display: flex;
+			margin-bottom: 16px;
+
+			&-image {
+				display: flex;
+				flex-direction: column;
+				gap: 1.2rem;
+			}
+
+			.product-details {
+				margin-left: 16px;
+				display: flex;
+				flex-direction: column;
+				gap: 1.2rem;
+				flex: 1;
+
+				h3 {
+					font-size: 18px;
+					margin-bottom: 8px;
+				}
+
+				p {
+					margin-bottom: 4px;
+					font-size: 16px;
+				}
+
+				.price {
+					font-weight: bold;
+				}
+			}
+		}
+
+		.remove-btn {
+			background: none;
+			border: none;
+			color: #ff4d4f;
+			cursor: pointer;
+			padding: 0;
+		}
+		.total-wrap {
+			display: flex;
+			justify-content: space-between;
+			margin-top: 16px;
+			font-weight: bold;
+			font-size: 24px;
+			.total {
+				color: #ff4d4f;
+			}
+		}
+	}
+
+	.customer-info {
+		box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+		padding: 24px;
+		border-radius: 8px;
+		position: sticky;
+		top: 20%;
+		height: fit-content;
+		h2 {
+			font-size: 18px;
+			margin-bottom: 16px;
+		}
+
+		.ant-input,
+		.ant-input-textarea {
+			margin-bottom: 16px;
+		}
+
+		.payment-btn {
+			width: 100%;
+			height: 48px;
+			font-size: 18px;
+			margin-bottom: 16px;
+			background-color: #ffc107;
+			border-color: #ffc107;
+
+			&:hover,
+			&:focus {
+				background-color: #ffca2c !important;
+				border-color: #ffca2c !important;
+			}
+
+			svg {
+				margin-right: 8px;
+			}
+		}
+
+		.add-more-btn {
+			width: 100%;
+			height: 48px;
+			font-size: 16px;
+			background-color: #fff3cd;
+			border-color: #ffc107;
+			color: #000;
+
+			&:hover,
+			&:focus {
+				background-color: #ffe69c;
+				border-color: #ffc107;
+			}
+		}
+
+		// Error input styles
+		.error-input {
+			border-color: #ff4d4f;
+			box-shadow: 0 0 0 2px rgba(255, 77, 79, 0.2);
+		}
+
+		// Error message styles
+		.error-message {
+			display: flex;
+			align-items: center;
+			color: #ff4d4f;
+			margin-top: -10px;
+			margin-bottom: 16px;
+			font-size: 14px;
+		}
+
+		.error-message svg {
+			margin-right: 4px;
+		}
+	}
+}
+
+// Responsive styles
+@media (max-width: 768px) {
+	.responsive-checkout-page {
+		padding: 16px;
+
+		.order-summary,
+		.customer-info {
+			h2 {
+				font-size: 16px;
+			}
+		}
+
+		.order-summary {
+			.product-info {
+				flex-direction: column;
+
+				.product-details {
+					margin-left: 0;
+					margin-top: 16px;
+				}
+			}
+		}
+
+		.customer-info {
+			position: static;
+			.payment-btn,
+			.add-more-btn {
+				height: 40px;
+				font-size: 14px;
+			}
+		}
+	}
+}
+
+// Override Ant Design styles
+:global {
+	.ant-input,
+	.ant-input-textarea {
+		border-radius: 4px;
+	}
+
+	.ant-btn {
+		border-radius: 4px;
+	}
+}

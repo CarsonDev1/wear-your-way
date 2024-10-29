@@ -5,10 +5,10 @@ import ProgressBar from '@/app/components/progress-bar';
 import { AuthProvider } from '@/app/contexts/AuthProvider';
 import { AntdRegistry } from '@ant-design/nextjs-registry';
 import Provider from '@/app/utils/Provider';
-import Step1 from '@/app/(root)/cart/page';
 import Step2 from '@/app/(root)/cart/step2';
 import Step3 from '@/app/(root)/cart/step3';
 import '@/app/globals.scss';
+import Page from '@/app/(root)/cart/page';
 
 const CartLayout: React.FC = () => {
 	const router = useRouter();
@@ -37,13 +37,13 @@ const CartLayout: React.FC = () => {
 	const renderStepContent = (): React.ReactNode => {
 		switch (currentStep) {
 			case 1:
-				return <Step1 nextStep={goToNextStep} />;
+				return <Page />;
 			case 2:
 				return <Step2 nextStep={goToNextStep} />;
 			case 3:
 				return <Step3 />;
 			default:
-				return <Step1 nextStep={goToNextStep} />;
+				return <Page />;
 		}
 	};
 
