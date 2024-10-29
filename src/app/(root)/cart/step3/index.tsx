@@ -7,22 +7,37 @@ import { Typography } from 'antd';
 import './step3.scss';
 import { getOrderById } from '@/app/api/cart/getOrderById';
 import { useQuery } from '@tanstack/react-query';
+import { useAuth } from '@/app/contexts/AuthProvider';
 
 const { Title, Paragraph, Text } = Typography;
 
 const Step3: React.FC = () => {
 	const [orderId, setOrderId] = useState<string | null>(null);
+	const { clearCart } = useAuth();
+
 	useEffect(() => {
 		const storedOrderId = localStorage.getItem('orderId');
+
+		// Reload page on initial load only once
+		if (!sessionStorage.getItem('hasReloaded')) {
+			sessionStorage.setItem('hasReloaded', 'true');
+			location.reload();
+		}
+
 		if (storedOrderId) {
 			setOrderId(storedOrderId);
+			clearCart();
+		} else {
+			console.log('No Order ID found in localStorage');
 		}
 	}, []);
+
 	const { data: order } = useQuery({
 		queryKey: ['order', orderId],
 		queryFn: () => getOrderById(orderId as string),
 		enabled: !!orderId,
 	});
+
 	return (
 		<div className='payment-confirmation'>
 			<div className='check-icon'>
