@@ -107,12 +107,14 @@ const Header = () => {
 								{cartCount > 0 && <span className='cart-count'>{cartCount}</span>}
 							</div>
 						</Link>
-						<div className='icon'>
-							<FaRegCircleUser />
-						</div>
-						<div className='burger-menu' onClick={toggleMobileMenu}>
-							{isMobileMenuOpen ? <IoMdClose /> : <IoMdMenu />}
-						</div>
+						<Link href='/login'>
+							<div className='icon'>
+								<FaRegCircleUser />
+							</div>
+							<div className='burger-menu' onClick={toggleMobileMenu}>
+								{isMobileMenuOpen ? <IoMdClose /> : <IoMdMenu />}
+							</div>
+						</Link>
 					</div>
 				</div>
 			</div>
