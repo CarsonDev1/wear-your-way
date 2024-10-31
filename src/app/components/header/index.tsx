@@ -10,6 +10,9 @@ import { usePathname } from 'next/navigation';
 import Link from 'next/link';
 import './header.scss';
 import { useAuth } from '@/app/contexts/AuthProvider';
+import { Dropdown, Menu, Spin } from 'antd';
+import { useQuery } from '@tanstack/react-query';
+import { getAccount } from '@/app/api/user/getAccount';
 
 const Header = () => {
 	const [isSubMenuOpen, setIsSubMenuOpen] = useState(false);
@@ -17,6 +20,21 @@ const Header = () => {
 	const [isScrolled, setIsScrolled] = useState(false);
 	const subMenuRef = useRef<HTMLUListElement | null>(null);
 	const { cartCount } = useAuth();
+
+	const { isLoading, error } = useQuery({
+		queryKey: ['userData'],
+		queryFn: () => getAccount(),
+	});
+
+	const { logout } = useAuth();
+
+	const menu = (
+		<Menu>
+			<Menu.Item key='1'>
+				<span onClick={logout}>Log Out</span>
+			</Menu.Item>
+		</Menu>
+	);
 
 	const pathname = usePathname();
 
@@ -57,6 +75,10 @@ const Header = () => {
 			document.removeEventListener('mousedown', handleClickOutside);
 		};
 	}, []);
+
+	if (error) {
+		return <div>Error loading user data</div>;
+	}
 
 	return (
 		<header className={`header ${isScrolled ? 'scrolled' : ''}`}>
@@ -108,13 +130,19 @@ const Header = () => {
 							</div>
 						</Link>
 						<Link href='/login'>
-							<div className='icon'>
-								<FaRegCircleUser />
-							</div>
-							<div className='burger-menu' onClick={toggleMobileMenu}>
-								{isMobileMenuOpen ? <IoMdClose /> : <IoMdMenu />}
-							</div>
+							{isLoading ? (
+								<Spin />
+							) : (
+								<Dropdown overlay={menu} trigger={['click']}>
+									<div className='user-icon'>
+										<FaRegCircleUser className='header-icon' />
+									</div>
+								</Dropdown>
+							)}
 						</Link>
+						<div className='burger-menu' onClick={toggleMobileMenu}>
+							{isMobileMenuOpen ? <IoMdClose /> : <IoMdMenu />}
+						</div>
 					</div>
 				</div>
 			</div>
