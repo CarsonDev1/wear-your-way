@@ -1,5 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 'use client';
+import { useRouter } from 'next/navigation';
 import React, { createContext, useContext, useState, ReactNode, useEffect } from 'react';
 import { toast } from 'react-toastify';
 
@@ -19,6 +20,7 @@ interface AuthProviderProps {
 }
 
 export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
+	const router = useRouter();
 	const [isAuthenticated, setIsAuthenticated] = useState(
 		typeof window !== 'undefined' && !!localStorage.getItem('accessToken')
 	);
@@ -57,13 +59,23 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
 
 	const logout = () => {
 		if (typeof window !== 'undefined') {
+			console.log('Logging out...');
 			localStorage.removeItem('accessToken');
 			localStorage.removeItem('refreshToken');
 			localStorage.removeItem('cart'); // Clear cart when logging out
 			setIsAuthenticated(false);
 			setCartCount(0); // Reset cart count
+			console.log('Logged out successfully');
+			router.push('/login'); // Navigate to login page immediately
+		} else {
+			console.error('Logout failed: window is undefined');
 		}
 	};
+
+	useEffect(() => {
+		// Update authentication state on initial load
+		setIsAuthenticated(!!localStorage.getItem('accessToken'));
+	}, []);
 
 	return (
 		<AuthContext.Provider value={{ isAuthenticated, login, logout, cartCount, addToCart, clearCart }}>
