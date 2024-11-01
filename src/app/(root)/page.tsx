@@ -13,8 +13,6 @@ declare global {
 }
 
 export default function Home() {
-	const { isAuthenticated } = useAuth();
-
 	useEffect(() => {
 		// Check if we are in a browser environment
 		if (typeof window !== 'undefined') {
@@ -40,17 +38,6 @@ export default function Home() {
 			})(document, 'script', 'facebook-jssdk');
 		}
 	}, []);
-
-	useEffect(() => {
-		// Redirect to login if not authenticated
-		if (!isAuthenticated && typeof window !== 'undefined') {
-			window.location.href = '/login';
-		}
-	}, [isAuthenticated]);
-
-	if (!isAuthenticated) {
-		return null;
-	}
 
 	return (
 		<div>
