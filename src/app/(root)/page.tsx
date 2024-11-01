@@ -2,7 +2,6 @@
 /* eslint-disable prefer-const */
 'use client';
 import { useEffect } from 'react';
-import { useAuth } from '@/app/contexts/AuthProvider';
 import Banner from '@/app/pages/home/banner';
 
 declare global {
