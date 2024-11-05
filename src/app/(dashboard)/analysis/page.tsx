@@ -78,13 +78,14 @@ const OrderManagement: React.FC = () => {
 			render: (products: OrderProduct[] | undefined) =>
 				products && products.length > 0
 					? products.map((item) => (
-							<div key={item.product.name}>
-								<strong>{item.product.name}</strong> - {item.quantity} pcs,{' '}
-								{item.product.price ? item.product.price.toLocaleString() : 'N/A'} VND
+							<div key={item.product?.name || Math.random()}>
+								<strong>{item.product?.name || 'Unknown Product'}</strong> - {item.quantity} pcs,{' '}
+								{item.product?.price ? item.product.price.toLocaleString() : 'N/A'} VND
 							</div>
 					  ))
 					: 'No products',
 		},
+
 		{
 			title: 'Actions',
 			key: 'actions',
