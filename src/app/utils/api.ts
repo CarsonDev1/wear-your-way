@@ -33,7 +33,6 @@ api.interceptors.response.use(
 				// Xử lý khi refresh token cũng hết hạn
 				localStorage.removeItem('accessToken');
 				localStorage.removeItem('refreshToken');
-				window.location.href = '/login'; // Điều hướng về trang đăng nhập
 			}
 		}
 		return Promise.reject(error);

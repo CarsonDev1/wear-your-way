@@ -122,12 +122,6 @@ const Step2: React.FC<PageProps> = ({ nextStep }) => {
 						<Text type='secondary'>
 							Sau khi chuyển khoản thành công bạn sẽ tự động được gửi đơn hàng xác nhận
 						</Text>
-						<span>Hoặc</span>
-						<div className='qr-section'>
-							<Button type='primary' onClick={handleMomoPayment}>
-								Thanh Toán với MoMo
-							</Button>
-						</div>
 					</>
 				);
 			case 'bank':

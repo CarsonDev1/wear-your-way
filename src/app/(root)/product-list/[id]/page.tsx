@@ -1,5 +1,5 @@
 'use client';
-import { useParams } from 'next/navigation';
+import { useParams, useRouter } from 'next/navigation';
 import { useQuery } from '@tanstack/react-query';
 import { getProductById } from '@/app/api/product/getProductById';
 import { useState } from 'react';
@@ -19,13 +19,19 @@ const ProductDetail: React.FC = () => {
 	const params = useParams() as unknown as Params;
 	const { id } = params;
 	const [selectedSize, setSelectedSize] = useState<number | null>(1);
-	const { addToCart } = useAuth();
+	const { addToCart, isAuthenticated } = useAuth();
+	const router = useRouter();
 
 	const handleSizeChange = (size: number) => {
 		setSelectedSize(size);
 	};
 
 	const handleAddToCart = () => {
+		if (!isAuthenticated) {
+			router.push('/login');
+			return;
+		}
+
 		Swal.fire({
 			title: 'Xác nhận thêm vào giỏ hàng?',
 			text: 'Bạn có chắc muốn thêm sản phẩm này vào giỏ hàng không?',

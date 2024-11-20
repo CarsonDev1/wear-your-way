@@ -10,7 +10,7 @@ import { usePathname } from 'next/navigation';
 import Link from 'next/link';
 import './header.scss';
 import { useAuth } from '@/app/contexts/AuthProvider';
-import { Dropdown, Menu, Spin } from 'antd';
+import { Button, Dropdown, Menu, Spin } from 'antd';
 import { useQuery } from '@tanstack/react-query';
 import { getAccount } from '@/app/api/user/getAccount';
 
@@ -21,9 +21,11 @@ const Header = () => {
 	const subMenuRef = useRef<HTMLUListElement | null>(null);
 	const { cartCount } = useAuth();
 
-	const { isLoading, error } = useQuery({
+	// Only make the API request if the accessToken exists
+	const token = typeof window !== 'undefined' ? localStorage.getItem('accessToken') : null;
+	const { isLoading, error, data } = useQuery({
 		queryKey: ['userData'],
-		queryFn: () => getAccount(),
+		queryFn: () => (token ? getAccount() : Promise.resolve(null)),
 	});
 
 	const { logout } = useAuth();
@@ -76,9 +78,26 @@ const Header = () => {
 		};
 	}, []);
 
-	if (error) {
-		return <div>Error loading user data</div>;
-	}
+	// Conditional rendering for user icon based on data or loading state
+	const renderUserIcon = () => {
+		if (isLoading) {
+			return <Spin />;
+		} else if (data) {
+			return (
+				<Dropdown overlay={menu} trigger={['click']}>
+					<div className='user-icon'>
+						<FaRegCircleUser className='header-icon' />
+					</div>
+				</Dropdown>
+			);
+		} else {
+			return (
+				<Link href='/login'>
+					<Button>Login</Button>
+				</Link>
+			);
+		}
+	};
 
 	return (
 		<header className={`header ${isScrolled ? 'scrolled' : ''}`}>
@@ -129,17 +148,7 @@ const Header = () => {
 								{cartCount > 0 && <span className='cart-count'>{cartCount}</span>}
 							</div>
 						</Link>
-						<Link href='/login'>
-							{isLoading ? (
-								<Spin />
-							) : (
-								<Dropdown overlay={menu} trigger={['click']}>
-									<div className='user-icon'>
-										<FaRegCircleUser className='header-icon' />
-									</div>
-								</Dropdown>
-							)}
-						</Link>
+						{renderUserIcon()}
 						<div className='burger-menu' onClick={toggleMobileMenu}>
 							{isMobileMenuOpen ? <IoMdClose /> : <IoMdMenu />}
 						</div>
